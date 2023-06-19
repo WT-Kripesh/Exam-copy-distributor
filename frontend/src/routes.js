@@ -10,7 +10,7 @@ import AddPackage from "./components/Elements/Package/addpackage.js";
 import Intermediate from "./components/Elements/Assignment/intermediate.js";
 import AssignPackage from "./components/Elements/Assignment/assignPackage.js";
 import PackageHome from "./components/Elements/Package/packageHome.js";
-import PackageHistory from "./components/Elements/Package/History/packageModal.js";
+// import PackageHistory from "./components/Elements/Package/History/packageModal.js";
 import ReceivePackage from "./components/Elements/Package/receivePackage.js";
 
 import AddNewExam from "./components/Elements/Exam/addExam.js";
@@ -76,11 +76,11 @@ class Routes extends Component {
                   exact
                   component={ReceivePackage}
                 />
-                <Route
+                {/* <Route
                   path="/packageHistory/:packageCode?"
                   exact
                   component={PackageHistory}
-                />
+                /> */}
                 {/* Exam ROutes */}
                 <Route path="/add-new-exam" exact component={AddNewExam} />
                 <Route path="/edit-exam/:examID" exact component={AddNewExam} />
