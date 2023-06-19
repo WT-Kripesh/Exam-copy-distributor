@@ -53,4 +53,3 @@ You can change it by setting environment variable `PORT`.
 - The password hashing used is MD5.
 - We have to change admin credentials by directly writing in the db file.
 - The college names also have to changed by directly writing in the db file.
-- .
