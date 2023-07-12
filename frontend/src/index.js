@@ -1,24 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Routes from "./routes.js";
+import router from "./routes.js";
 
-import { BrowserRouter } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
+import App from './App.js'
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        {/* first time this app is get rendered and all other component are inside Routes*/}
-
-        <Routes />
-      </div>
-    );
-  }
-}
+// class App extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         {/* first time this app is get rendered and all other component are inside Routes*/}
+//         <App />
+//       </div>
+//     );
+//   }
+// }
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+    <App />,
   document.querySelector("#root")
 );

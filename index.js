@@ -67,29 +67,6 @@ passport.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use((req, res, next) => {
-//   getById(1, (err, result) => {
-//     console.log("result", result);
-//   });
-//   next();
-// });
-
-// Basic auth
-
-// app.use(
-//   basicAuth({
-//     authorizer: checkUserPassword,
-//     unauthorizedResponse: getUnauthorizedResponse,
-//     authorizeAsync: true,
-//   })
-// );
-
-// function getUnauthorizedResponse(req) {
-//   return req.auth
-//     ? "Credentials " + req.auth.user + ":" + req.auth.password + " rejected"
-//     : "No credentials provided";
-// }
-
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.json());
@@ -136,7 +113,7 @@ try {
   app.use(
     "/API",
     // comment line below to allow unauthenticated users
-    isAuthenticated,
+    // isAuthenticated,
     routes
   );
 

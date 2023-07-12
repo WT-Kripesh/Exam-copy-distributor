@@ -77,3 +77,12 @@ g.recharts-cartesian-axis-ticks {
   background:rgb(23,100,131);
    color:#fff;
 }
+
+.login-wraper{
+  display: flex;
+  justify-content: 'center'
+}
+
+.login-input{
+  
+}

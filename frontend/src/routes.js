@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { createBrowserRouter } from "react-router-dom";
 
 //HOC
 import Layout from "./hoc/layout.js";
@@ -34,132 +34,137 @@ import Test from "./components/Widgets/test.js";
 import Login from "./components/Elements/Login/login.js";
 import AuthenticatedContext from "./Context/AuthenticatedContext.js";
 import Session from "./components/Elements/Session/Session.js";
-// import Auth from './hoc/protectedLayout.js'
-class Routes extends Component {
-  // set this to true to not be redirected to login page
-  state = { authenticated: false };
 
-  componentDidMount() {
-    fetch("/user/").then((res) => {
-      if (res.status === 401) return;
-      this.setState({ authenticated: true });
-    });
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />
+  },
+  {
+    path: '/login',
+    element : <Login />
+  },
+
+  {
+    path: '/packages',
+    element : <PackageHome />
+  },
+  { 
+    path: '/add-new-package',
+    element: <AddPackage />
+  },
+  {
+    path: '/edit-package/:packageID',
+    element : <AddPackage />
+  },
+  {
+    path: '/assign-package/:personID',
+    element: <AssignPackage />,
+  },
+
+  {
+    path: "/intermediate",
+    element: <Intermediate />,
+  },
+
+  {
+    path: "/receivePackage/:assignmentID",
+    element: <ReceivePackage />,
+  },
+
+  // Exam Router
+  {
+    path: "/add-new-exam",
+    element: <AddNewExam />,
+  },
+
+  {
+    path: "/edit-exam/:examID",
+    element: <AddNewExam />,
+  },
+
+  {
+    path: "/exam-details/:examID",
+    element: <ExamDetails />,
+  },
+
+  // Person route
+  {
+    path: "/edit-person/:personID",
+    element: <Person />,
+  },
+  {
+    path: 'add-new-person',
+    element: <Person />
+  },
+
+  // subject routes
+  {
+    path: '/subjects',
+    element: <Subject /> ,
+  },
+
+  {
+    path: "/add-new-subject",
+    element: <AddNewSubject /> ,
+  },
+
+  {
+    path: "/edit-subject/:subjectID",
+    element: <AddNewSubject />,
+  },
+
+  //department routes
+  {
+    path: "/departments",
+    element: <Department />,
+  },
+
+  {
+    path: '/add-new-department',
+    element: <AddDepartment />,
+  },
+
+  {
+    path: '/edit-department/:departmentID',
+    element: <AddDepartment />,
+  },
+
+  // programs routes
+  {
+    path: '/add-new-program',
+    element: <AddNewProgram />,
+  },
+  {
+    path: '/edit-program/:programID',
+    element: <AddNewProgram />
+  },
+  {
+    path: '/programs' ,
+    element: <Program />
+  },
+  {
+    path: '/exams',
+    element: <ExamTable />
+  },
+  {
+    path: '/session',
+    element: <Session />
+  },
+  {
+    path: '/test',
+    element : <Test />
+  },
+  {
+    path: '/delete/:type/:id',
+    element: <Delete />
+  },
+
+  {
+    path: '*',
+    element : <h1>404 Not Found</h1>
   }
-  render() {
-    return (
-      <div>
-        <AuthenticatedContext.Provider value={this.state.authenticated}>
-          {/* Layout is HOC, it contains header and footer and loads for every component. Every other component are children of HOC*/}
-          <Layout>
-            {this.state.authenticated ? (
-              <Switch>
-                {/*exact is used to match path of component exactly. Otherwise, if there are two path home and homes, path home is rendered */}
-                <Route path="/" exact component={Home} />
-                {/* auth */}
-                <Route path="/login" exact component={Login} />
-                {/* Package Route */}
-                <Route path="/packages" exact component={PackageHome} />
-                <Route path="/add-new-package" exact component={AddPackage} />
-                <Route
-                  path="/edit-package/:packageID"
-                  exact
-                  component={AddPackage}
-                />
-                <Route
-                  path="/assign-package/:personID"
-                  exact
-                  component={AssignPackage}
-                />
-                <Route path="/intermediate" exact component={Intermediate} />
-                <Route
-                  path="/receivePackage/:assignmentID"
-                  exact
-                  component={ReceivePackage}
-                />
-                {/* <Route
-                  path="/packageHistory/:packageCode?"
-                  exact
-                  component={PackageHistory}
-                /> */}
-                {/* Exam ROutes */}
-                <Route path="/add-new-exam" exact component={AddNewExam} />
-                <Route path="/edit-exam/:examID" exact component={AddNewExam} />
-                <Route
-                  path="/exam-details/:examID"
-                  exact
-                  component={ExamDetails}
-                />
-                <Route
-                  path="/edit-person/:personID"
-                  exact
-                  render={(props) => (
-                    <Person onSubmission={props.history.goBack} {...props} />
-                  )}
-                />
-                <Route path="/add-new-person" exact component={Person} />
+])
 
-                {/* Subject Route */}
-                <Route path="/subjects" exact component={Subject} />
-                <Route
-                  path="/add-new-subject"
-                  exact
-                  component={AddNewSubject}
-                />
-                <Route
-                  path="/edit-subject/:subjectID"
-                  exact
-                  component={AddNewSubject}
-                />
-
-                {/* Department Route */}
-                <Route path="/departments" exact component={Department} />
-                <Route
-                  path="/add-new-department"
-                  exact
-                  component={AddDepartment}
-                />
-                <Route
-                  path="/edit-department/:departmentID"
-                  exact
-                  component={AddDepartment}
-                />
-
-                {/* Program Route */}
-                <Route
-                  path="/add-new-program"
-                  exact
-                  component={AddNewProgram}
-                />
-                <Route
-                  path="/edit-program/:programID"
-                  exact
-                  component={AddNewProgram}
-                />
-                <Route path="/programs" exact component={Program} />
-                {/* Exam Route */}
-                <Route path="/exams" exact component={ExamTable} />
-                <Route path="/session" exact component={Session} />
-
-                <Route path="/test" exact component={Test} />
-
-                <Route path="/delete/:type/:id" exact component={Delete} />
-
-                <Route
-                  path="*"
-                  exact
-                  render={() => {
-                    return <h1>404 Not Found</h1>;
-                  }}
-                />
-              </Switch>
-            ) : (
-              <Login />
-            )}
-          </Layout>
-        </AuthenticatedContext.Provider>
-      </div>
-    );
-  }
-}
-
-export default Routes;
+export default router;

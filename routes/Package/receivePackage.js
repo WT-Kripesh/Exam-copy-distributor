@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navigate } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { calendarFunctions } from "../../Widgets/jquery.nepaliDatePicker";
 //Components
 import Form from "../../Widgets/Form/forms.js";
@@ -46,6 +46,24 @@ class ReceivePackage extends Component {
         touched: false,
         validationText: "",
       },
+      // campus: {
+      //   element: "input",
+      //   value: "",
+      //   label: true,
+      //   labelText: "Address",
+      //   config: {
+      //     name: "address_input",
+      //     type: "text",
+      //     disabled: "disabled",
+      //     placeholder: "Enter Address of receiver",
+      //   },
+      //   validation: {
+      //     required: false,
+      //   },
+      //   valid: true,
+      //   touched: false,
+      //   validationText: "",
+      // },
       contact: {
         element: "input",
         value: "",
@@ -290,7 +308,7 @@ class ReceivePackage extends Component {
   };
   render() {
     if (this.state.packageReceived) {
-      return <Navigate replace to="/" />;
+      return <Redirect to="/" />;
     }
     return (
       <div>

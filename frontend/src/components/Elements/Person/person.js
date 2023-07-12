@@ -39,74 +39,7 @@ class Person extends React.Component {
         touched: false,
         validationText: "",
       },
-      // courseCode: {
-      //   element: "input",
-      //   value: "",
-      //   required: true,
-      //   labelText: "Course code",
-      //   config: {
-      //     name: "address_input",
-      //     type: "text",
-      //     placeholder: "Enter the course code"
-      //   },
-      //   validation: {
-      //     required: false
-      //   },
-      //   valid: true,
-      //   touched: false,
-      //   validationText: ""
-      // },
-      // programme: {
-      //   element: "input",
-      //   value: "",
-      //   required: true,
-      //   labelText: "Programme",
-      //   config: {
-      //     name: "address_input",
-      //     type: "text",
-      //     placeholder: "Enter the Programme"
-      //   },
-      //   validation: {
-      //     required: false
-      //   },
-      //   valid: true,
-      //   touched: false,
-      //   validationText: ""
-      // },
-      // year_part: {
-      //   element: "input",
-      //   value: "",
-      //   required: true,
-      //   labelText: "Year/part",
-      //   config: {
-      //     name: "address_input",
-      //     type: "text",
-      //     placeholder: "Enter the year part of subject"
-      //   },
-      //   validation: {
-      //     required: false
-      //   },
-      //   valid: true,
-      //   touched: false,
-      //   validationText: ""
-      // },
-      // subject: {
-      //   element: "input",
-      //   value: "",
-      //   required: true,
-      //   labelText: "Subject Name",
-      //   config: {
-      //     name: "address_input",
-      //     type: "text",
-      //     placeholder: "Enter the full subject name"
-      //   },
-      //   validation: {
-      //     required: false
-      //   },
-      //   valid: true,
-      //   touched: false,
-      //   validationText: ""
-      // },
+
       campus: {
         element: "select",
         value: "",
@@ -123,74 +56,7 @@ class Person extends React.Component {
         touched: false,
         validationText: "",
       },
-      // teachingExperience: {
-      //   element: "input",
-      //   value: "",
-      //   required: true,
-      //   labelText: "Teaching experience",
-      //   config: {
-      //     name: "address_input",
-      //     type: "text",
-      //     placeholder: "Enter the experience"
-      //   },
-      //   validation: {
-      //     required: false
-      //   },
-      //   valid: true,
-      //   touched: false,
-      //   validationText: ""
-      // },
-      // experienceinthisSubj: {
-      //   element: "input",
-      //   value: "",
-      //   required: true,
-      //   labelText: "Experience in this subject",
-      //   config: {
-      //     name: "address_input",
-      //     type: "text",
-      //     placeholder: "Enter the experience"
-      //   },
-      //   validation: {
-      //     required: false
-      //   },
-      //   valid: true,
-      //   touched: false,
-      //   validationText: ""
-      // },
-      // academicQualification: {
-      //   element: "input",
-      //   value: "",
-      //   required: true,
-      //   labelText: "Academic qualification",
-      //   config: {
-      //     name: "address_input",
-      //     type: "text",
-      //     placeholder: "Enter qualification"
-      //   },
-      //   validation: {
-      //     required: false
-      //   },
-      //   valid: true,
-      //   touched: false,
-      //   validationText: ""
-      // },
-      // jobType: {
-      //   element: "input",
-      //   value: "",
-      //   required: true,
-      //   labelText: "Type of job",
-      //   config: {
-      //     name: "address_input",
-      //     type: "text",
-      //     placeholder: "Part time or full time"
-      //   },
-      //   validation: {
-      //     required: false
-      //   },
-      //   valid: true,
-      //   touched: false,
-      //   validationText: ""
-      // },
+
       email: {
         element: "input",
         value: "",
@@ -329,7 +195,6 @@ class Person extends React.Component {
           if (personID !== undefined || event.target.id === "save")
             this.props.history.goBack();
           this.setState({ error: false });
-          // this.props.onSubmission();
         } else this.setState({ error: true, errorText: res.statusText });
       })
       .catch((err) => {
