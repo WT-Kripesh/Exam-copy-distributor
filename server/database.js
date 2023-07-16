@@ -1,4 +1,4 @@
-const mysql = require("mysql");
+// const mysql = require("mysql");
 const sqlite = require("sqlite3");
 
 // const pool = mysql.createPool({
@@ -10,6 +10,4 @@ const sqlite = require("sqlite3");
 //   multipleStatements: true,
 // });
 const connectToDB = ()=> new sqlite.Database("db/EPMS.sqlite3");
-
-
 module.exports.connectToDB = connectToDB;

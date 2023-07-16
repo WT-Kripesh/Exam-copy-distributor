@@ -4,7 +4,6 @@ const md5 = require("md5");
 module.exports.checkUserPassword = function (username, password, cb) {
   pool.getConnection(function (err, connection) {
     if (err) throw err;
-
     const query = `select * from admin where username="${username}" and password="${md5(
       password
     )}"`;
