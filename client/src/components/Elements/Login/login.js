@@ -1,74 +1,73 @@
-import React, { Component, useState } from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
-// import { }
-import { withRouter, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import './login.css'
+// import logo from '../../../../public/images/logo.png'
+import { useNavigate } from 'react-router-dom'
 
-//login component of the application
 const Login = () => {
-  const [ adminCredential , setAdminCredential ] = useState( { username : '', password: '' })
+    
+    //login credentials
+    const [ loginCredential, setLoginCredential ] = useState({ username: '', password: ''})
+   
+    const navigation = useNavigate()
+    
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+    
+        fetch("/API/login", {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify( loginCredential ),
+          }).then((res) => {
+            if (res.ok) {
+              navigation("/");
+            }
+            else  alert("Username/Password is wrong!!")
+          })
 
-  const navigation = useNavigate();
-  const handleChange = (e) => {
-    e.persist()
-    setAdminCredential( ( prev ) =>  {return { ...prev, [e.target.id]: e.target.value }});
-  };
+    }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch("/API/login", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify( adminCredential ),
-    }).then((res) => {
-      if (res.ok) {
-        navigation("/");
-      }
-      else  alert("Username/Password is wrong!!")
-    })
-  };
+    const handleChange = (e) =>{
+        const id = e.target.id
+        const value = e.target.value
+        setLoginCredential( prev =>{
+            return { ...prev, [id]: value}
+        })
+    }
+    
 
-  
-  return (
-    <div className="container mt-4">
-      <MDBContainer>
-        <MDBRow className="justify-content-center">
-          <MDBCol md="6">
-            <form>
-              <p className="h5 text-center mb-4">Login</p>
-              <div className="grey-text">
-                <MDBInput
-                  id="username"
-                  label="Username"
-                  icon="user"
-                  group
-                  onChange={(e) => handleChange( e )}
-                  value = { adminCredential.username}
+    return <>
+        <div className = 'login-wraper'>
+            <div className = 'login-logo-wraper'>
+                <img src = '/images/logo.png' alt = 'logo'/>
+            </div>
+            <h3>Welcome to Exam Copy Managment System</h3>
+            <form className = 'login-form' onSubmit = { handleSubmit }>
+                <input 
+                    id = 'username'
+                    className = 'login-input'
+                    type = 'text'
+                    placeholder='Enter your admin username..'
+                    onChange = { e => handleChange(e) }
                 />
-                <MDBInput
-                  id="password"
-                  onChange={(e) => handleChange( e )}
-                  label="Password"
-                  icon="lock"
-                  group
-                  type="password"
-                  value = { adminCredential.password }
-                  validate
+                <input 
+                    id = 'password'
+                    className = 'login-input'
+                    type = 'password'
+                    placeholder = 'Enter your password..'  
+                    onChange = { e => handleChange(e) }
                 />
-              </div>
-              <div style = {{ display: 'flex', justifyContent: 'center'}}>
-                <MDBBtn color="primary" onClick={ handleSubmit } type = 'submit'>
-                  Login
-                </MDBBtn>
-
-              </div>
+                <button
+                    type = 'submit'
+                    className = 'login-button'
+                >
+                    Login
+                </button>
             </form>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-    </div>
-  );
+        </div>
+    </>
+
 }
 
-export default Login;
+export default Login 

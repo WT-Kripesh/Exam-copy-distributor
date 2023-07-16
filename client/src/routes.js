@@ -39,7 +39,7 @@ import Session from "./components/Elements/Session/Session.js";
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />
+    element: <Login />
   },
   {
     path: '/login',
