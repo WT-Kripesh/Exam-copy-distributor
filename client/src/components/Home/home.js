@@ -11,19 +11,19 @@ const buttons = [
     className: "home-button",
     color: "orange",
     icon: faPlus,
-    link: "/add-new-package",
+    link: "/admin/add-new-package",
   },
   {
     text: "Assign Packages",
     className: "home-button",
     color: "rgb(23,100,131)",
     icon: faEdit,
-    link: "/intermediate",
+    link: "/admin/intermediate",
   },
   {
     text: "Add New Exam",
     className: "home-button",
-    link: "/add-new-exam",
+    link: "/admin/add-new-exam",
     color: "orange",
     icon: faPlus,
   },
@@ -31,7 +31,7 @@ const buttons = [
 const breadcrumbItems = [
   {
     text: "Dashboard",
-    link: "/",
+    link: "/admin/",
   },
 ];
 class Home extends React.Component {

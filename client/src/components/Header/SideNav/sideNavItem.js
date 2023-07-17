@@ -22,7 +22,7 @@ const SideNavItems = () => {
     {
       className: "option",
       text: "Program",
-      link: "/programs",
+      link: "/admin/programs",
     },
     {
       className: "option",
@@ -50,18 +50,6 @@ const SideNavItems = () => {
       text: "Person",
       link: "/admin/intermediate",
     },
-    {
-      className: "option",
-      text: "Package History",
-      link: "/admin/packageHistory",
-    },
-    // {
-    //     className: 'option',
-    //     icon: 'sign-out',
-    //     text: 'Assignment',
-    //     link: '/assignments',
-    //     children: [{texts:'Hellox'}]
-    // },
   ];
 
   const showItems = () => {

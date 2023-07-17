@@ -31,14 +31,6 @@ class Layout extends Component {
                 />
             </div>
             <div className = "main-content">
-            {/* <Breadcrumbs
-                separator={<b> / </b>}
-                item={NavLink}
-                finalItem={'b'}
-                finalProps={{
-                style: {color: 'red'}
-                }}
-                /> */}
                 {/* EVery other component is rendered here as a child of HOC */}
                 <Outlet />
             </div>

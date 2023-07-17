@@ -8,7 +8,7 @@ let adbs = require("ad-bs-converter");
 const breadCrumbItems = [
   {
     text: "Add New Exam",
-    link: "/add-new-exam",
+    link: "/admin/add-new-exam",
   },
 ];
 //import { async } from "q";
