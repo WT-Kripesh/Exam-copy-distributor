@@ -4,26 +4,27 @@ const config = require("config");
 const routes = require("./routes");
 const bodyParser = require("body-parser");
 const passport = require("passport");
-
+const cors = require('cors')
 const LocalStrategy = require("passport-local").Strategy;
 
 const { getByUsernamePassword, getById } = require("./controller/User");
 const isAuthenticated = require("./middlewares/isAuthenticated");
 
 const app = express();
+app.use( cors() )
 
 //Middlewares
 
 //Allow CORS
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.header("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS");
-  next();
-});
+// app.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   res.header("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS");
+//   next();
+// });
 
 app.use(
   session({
