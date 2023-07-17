@@ -10,13 +10,13 @@ const SideNavItems = () => {
     {
       className: "option",
       text: "Session",
-      link: "/session",
+      link: "/admin/session",
     },
     {
       className: "option",
       icon: "play",
       text: "Department",
-      link: "/departments",
+      link: "/admin/departments",
       children: [{ texts: "Hello" }],
     },
     {
@@ -28,32 +28,32 @@ const SideNavItems = () => {
       className: "option",
       icon: "sign-in",
       text: "Subject",
-      link: "/subjects",
+      link: "/admin/subjects",
       children: [{ texts: "Hello" }],
     },
     {
       className: "option",
       icon: "file-text-o",
       text: "Exam",
-      link: "/exams",
+      link: "/admin/exams",
       children: ["Add New Exam"],
     },
     {
       className: "option",
       icon: faHome,
       text: "Package",
-      link: "/packages",
+      link: "/admin/packages",
       id: "packages",
     },
     {
       className: "option",
       text: "Person",
-      link: "/intermediate",
+      link: "/admin/intermediate",
     },
     {
       className: "option",
       text: "Package History",
-      link: "/packageHistory",
+      link: "/admin/packageHistory",
     },
     // {
     //     className: 'option',

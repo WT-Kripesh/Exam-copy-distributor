@@ -2,7 +2,7 @@ import React , {Component}  from 'react';
 import Header from '../components/Header/header.js'
 import './layout.css'
 import {Breadcrumbs} from 'react-breadcrumbs-dynamic';
-import {NavLink} from 'react-router-dom';
+import {Outlet} from 'react-router-dom';
 class Layout extends Component {
 
     state = {
@@ -40,7 +40,7 @@ class Layout extends Component {
                 }}
                 /> */}
                 {/* EVery other component is rendered here as a child of HOC */}
-                {this.props.children}
+                <Outlet />
             </div>
             </div>
         )

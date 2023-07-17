@@ -20,8 +20,9 @@ const Login = () => {
             },
             body: JSON.stringify( loginCredential ),
           }).then((res) => {
+
             if (res.ok) {
-              navigation("/");
+              navigation("/admin");
             }
             else  alert("Username/Password is wrong!!")
           })
@@ -48,14 +49,14 @@ const Login = () => {
                     id = 'username'
                     className = 'login-input'
                     type = 'text'
-                    placeholder='Enter your admin username..'
+                    placeholder='Username'
                     onChange = { e => handleChange(e) }
                 />
                 <input 
                     id = 'password'
                     className = 'login-input'
                     type = 'password'
-                    placeholder = 'Enter your password..'  
+                    placeholder = 'Password'  
                     onChange = { e => handleChange(e) }
                 />
                 <button

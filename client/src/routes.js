@@ -45,126 +45,136 @@ const router = createBrowserRouter([
     path: '/login',
     element : <Login />
   },
-
-  {
-    path: '/packages',
-    element : <PackageHome />
-  },
   { 
-    path: '/add-new-package',
-    element: <AddPackage />
-  },
-  {
-    path: '/edit-package/:packageID',
-    element : <AddPackage />
-  },
-  {
-    path: '/assign-package/:personID',
-    element: <AssignPackage />,
+    path: '/admin',
+    element: <Layout />,
+    children:[
+        {
+          path: '/admin',
+          element: <Home />
+        },
+        {
+          path: '/admin/packages',
+          element : <PackageHome />
+        },
+        { 
+          path: '/admin/add-new-package',
+          element: <AddPackage />
+        },
+        {
+          path: '/admin/edit-package/:packageID',
+          element : <AddPackage />
+        },
+        {
+          path: '/admin/assign-package/:personID',
+          element: <AssignPackage />,
+        },
+        
+        {
+          path: "/admin/intermediate",
+          element: <Intermediate />,
+        },
+        
+        {
+          path: "/admin/receivePackage/:assignmentID",
+          element: <ReceivePackage />,
+        },
+        
+        // Exam Router
+        {
+          path: "/admin/add-new-exam",
+          element: <AddNewExam />,
+        },
+        
+        {
+          path: "/admin/edit-exam/:examID",
+          element: <AddNewExam />,
+        },
+        
+        {
+          path: "/admin/exam-details/:examID",
+          element: <ExamDetails />,
+        },
+        
+        // Person route
+        {
+          path: "/admin/edit-person/:personID",
+          element: <Person />,
+        },
+        {
+          path: '/admin/add-new-person',
+          element: <Person />
+        },
+        
+        // subject routes
+        {
+          path: '/admin//subjects',
+          element: <Subject /> ,
+        },
+        
+        {
+          path: "/admin/add-new-subject",
+          element: <AddNewSubject /> ,
+        },
+        
+        {
+          path: "/admin/edit-subject/:subjectID",
+          element: <AddNewSubject />,
+        },
+        
+        //department routes
+        {
+          path: "/admin/departments",
+          element: <Department />,
+        },
+        
+        {
+          path: '/admin/add-new-department',
+          element: <AddDepartment />,
+        },
+        
+        {
+          path: '/admin/edit-department/:departmentID',
+          element: <AddDepartment />,
+        },
+        
+        // programs routes
+        {
+          path: '/admin/add-new-program',
+          element: <AddNewProgram />,
+        },
+        {
+          path: '/admin/edit-program/:programID',
+          element: <AddNewProgram />
+        },
+        {
+          path: '/admin/programs' ,
+          element: <Program />
+        },
+        {
+          path: '/admin/exams',
+          element: <ExamTable />
+        },
+        {
+          path: '/admin/session',
+          element: <Session />
+        },
+        {
+          path: '/admin/test',
+          element : <Test />
+        },
+        {
+          path: '/admin/delete/:type/:id',
+          element: <Delete />
+        },
+        
+        {
+          path: '*',
+          element : <h1>404 Not Found</h1>
+        }
+    ]
   },
 
-  {
-    path: "/intermediate",
-    element: <Intermediate />,
-  },
-
-  {
-    path: "/receivePackage/:assignmentID",
-    element: <ReceivePackage />,
-  },
-
-  // Exam Router
-  {
-    path: "/add-new-exam",
-    element: <AddNewExam />,
-  },
-
-  {
-    path: "/edit-exam/:examID",
-    element: <AddNewExam />,
-  },
-
-  {
-    path: "/exam-details/:examID",
-    element: <ExamDetails />,
-  },
-
-  // Person route
-  {
-    path: "/edit-person/:personID",
-    element: <Person />,
-  },
-  {
-    path: 'add-new-person',
-    element: <Person />
-  },
-
-  // subject routes
-  {
-    path: '/subjects',
-    element: <Subject /> ,
-  },
-
-  {
-    path: "/add-new-subject",
-    element: <AddNewSubject /> ,
-  },
-
-  {
-    path: "/edit-subject/:subjectID",
-    element: <AddNewSubject />,
-  },
-
-  //department routes
-  {
-    path: "/departments",
-    element: <Department />,
-  },
-
-  {
-    path: '/add-new-department',
-    element: <AddDepartment />,
-  },
-
-  {
-    path: '/edit-department/:departmentID',
-    element: <AddDepartment />,
-  },
-
-  // programs routes
-  {
-    path: '/add-new-program',
-    element: <AddNewProgram />,
-  },
-  {
-    path: '/edit-program/:programID',
-    element: <AddNewProgram />
-  },
-  {
-    path: '/programs' ,
-    element: <Program />
-  },
-  {
-    path: '/exams',
-    element: <ExamTable />
-  },
-  {
-    path: '/session',
-    element: <Session />
-  },
-  {
-    path: '/test',
-    element : <Test />
-  },
-  {
-    path: '/delete/:type/:id',
-    element: <Delete />
-  },
-
-  {
-    path: '*',
-    element : <h1>404 Not Found</h1>
-  }
 ])
 
 export default router;
