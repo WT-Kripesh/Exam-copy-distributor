@@ -68,7 +68,7 @@ class ExamTable extends React.Component {
     }, {});
   };
 
-  componentWillMount = () => {
+  componentDidlMount = () => {
     fetch(process.env.REACT_APP_BASE_URL + "API/query/getExams")
       .then((res) => res.json())
       .then((json) => {

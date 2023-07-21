@@ -82,13 +82,8 @@ try {
       res.sendStatus(401);
     }
   });
-
-  function sendIndexFile(req, res) {
-    res.sendFile("./public/index.html", { root: __dirname });
-  }
-
-  // app.get("/login", sendIndexFile)
-
+ 
+ 
   app.post("/API/login", function (req, res, next) {
     passport.authenticate("local", function (err, user, info) {
       if (err) {
@@ -107,18 +102,24 @@ try {
   });
 
   app.get("/API/logout", (req, res, next) => {
-    req.logout();
-    res.sendStatus(200);
+    console.log('User logged out successfully')
+    req.logout(err =>{
+      if ( err ) { return next( err )}
+      res.sendStatus(200)
+    });
+    // res.sendStatus(200);
   });
 
   app.use(
     "/API",
     // comment line below to allow unauthenticated users
-    // isAuthenticated,
+    isAuthenticated,
     routes
   );
 
-  app.get("/*", sendIndexFile);
+  app.get("/*", ( req, res )=>{
+    res.sendStatus(404)
+  });
 
   //PORT
   const port = process.env.PORT || 4000;

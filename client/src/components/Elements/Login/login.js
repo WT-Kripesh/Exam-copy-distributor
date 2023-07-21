@@ -13,7 +13,7 @@ const Login = () => {
     const handleSubmit = (e) =>{
         e.preventDefault();
     
-        fetch("/API/login", {
+        fetch(`${process.env.REACT_APP_BASE_URL}API/login`, {
             method: "post",
             headers: {
               "Content-Type": "application/json",
