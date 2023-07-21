@@ -65,7 +65,7 @@ const Session = () => {
     }
 
     const loadCofirm = window.confirm(
-      "Do You Really Want to Load the Selected Old Session ??"
+      "Do You Really Want to Load the Selected Old Session ?"
     );
 
     if (loadCofirm) {

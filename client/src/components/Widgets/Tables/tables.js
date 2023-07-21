@@ -126,7 +126,7 @@ class MainTable extends React.Component {
     if (this.props.quickLinks) {
       return this.props.quickLinks.map((element, index) => {
         return (
-          <Link to={element.link}>
+          <Link to={element.link} key = { index }>
             <button className="btn btn-secondary">{element.text}</button>
           </Link>
         );
