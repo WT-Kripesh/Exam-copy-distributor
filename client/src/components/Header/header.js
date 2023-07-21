@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "./header.css";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
-  faUser,
+  // faUser,
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import SideNav from "./SideNav/sidenav.js";
 import { useContext } from "react";
 import AuthenticatedContext from "../../Context/AuthenticatedContext";
+import { toast } from 'react-toastify'
 
 const Header = (props) => {
   const authenticated = useContext(AuthenticatedContext);
-
+  const navigate = useNavigate();
   const [session, setSession] = useState("");
   useEffect(() => {
     fetch(process.env.REACT_APP_BASE_URL + "API/query/getSessionName")
@@ -47,13 +48,16 @@ const Header = (props) => {
             <h6 className=" text-secondary w-100 text-center">{session}</h6>
           </div>
         </div>
-        {authenticated ? (
+        {/* {authenticated ? ( */}
           <div className="user-logo">
             <button
               onClick={() => {
-                fetch("/API/logout").then(() => {
-                  window.location.href = "/";
-                  window.location.reload();
+                fetch(`${process.env.REACT_APP_BASE_URL}API/logout`).then(( res ) => {
+                  if( res.ok ){
+                    console.log('About to log out')
+                     navigate( '/login')
+                  }
+                   else toast('Coundn\'t Logout')   
                 });
               }}
               className="btn btn-link"
@@ -68,16 +72,16 @@ const Header = (props) => {
               />
             </button>
           </div>
-        ) : (
-          <div className="user-logo">
-            <Link
-              to="/login"
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              <FontAwesomeIcon icon={faUser} className="user-icon" />
-            </Link>
-          </div>
-        )}
+        {/* // ) : (
+        //   <div className="user-logo">
+        //     <Link
+        //       to="/login"
+        //       style={{ textDecoration: "none", color: "white" }}
+        //     >
+        //       <FontAwesomeIcon icon={faUser} className="user-icon" />
+        //     </Link>
+        //   </div>
+        // )} */}
       </div>
     </div>
   );
