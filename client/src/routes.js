@@ -35,7 +35,7 @@ import Login from "./components/Elements/Login/login.js";
 import AuthenticatedContext from "./Context/AuthenticatedContext.js";
 import Session from "./components/Elements/Session/Session.js";
 
-
+import Navbar from  './components/Header/Navbar.js'
 const router = createBrowserRouter([
   {
     path: '/',

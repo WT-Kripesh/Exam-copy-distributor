@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState,useEffect } from 'react'
 import './buttons.css'
 import logo from '../../../public/images/logo.png'
 import { useNavigate } from 'react-router-dom'
@@ -7,7 +7,7 @@ const Login = () => {
     
     //login credentials
     const [ loginCredential, setLoginCredential ] = useState({ username: '', password: ''})
-   
+   const navigate = useNavigate()
     
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -20,7 +20,7 @@ const Login = () => {
             body: JSON.stringify( loginCredential ),
           }).then((res) => {
             if (res.ok) {
-              navigation("/");
+              navigate("/");
             }
             else  alert("Username/Password is wrong!!")
           })

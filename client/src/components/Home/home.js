@@ -5,6 +5,7 @@ import "./buttons.css";
 import { faPlus, faEdit } from "@fortawesome/free-solid-svg-icons";
 import BreadCrumb from "../Widgets/Breadcrumb/breadcrumb.js";
 import { MDBCard, MDBCardBody, MDBCardHeader, MDBContainer } from "mdbreact";
+import Navbar from '../Header/Navbar.js'
 const buttons = [
   {
     text: "Entry New Package",

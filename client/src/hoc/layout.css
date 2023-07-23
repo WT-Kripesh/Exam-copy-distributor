@@ -2,12 +2,15 @@
 {
     position:relative;
 }
-.header {
+
+.head
+{
     position: absolute;
     top:0px;
+    width:100%;
 }
 .main-content {
     position: absolute;
-    top: 130px;
+    top: 150px;
     width:100%;
 }

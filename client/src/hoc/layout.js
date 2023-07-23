@@ -1,8 +1,8 @@
 import React , {Component}  from 'react';
-import Header from '../components/Header/header.js'
 import './layout.css'
 import {Breadcrumbs} from 'react-breadcrumbs-dynamic';
 import {Outlet} from 'react-router-dom';
+import Navbar from '../components/Header/Navbar.js'
 class Layout extends Component {
 
     state = {
@@ -20,15 +20,13 @@ class Layout extends Component {
     render (){
         return(
             <div className = 'layout'>
+                 
+               
                 
-                
-                <div className = "header">
-
-                <Header
-                showNav={this.state.showNav}
-                onHideNav={() => this.toggleSideNav(false)}
-                onOpenNav={() => this.toggleSideNav(true)}
-                />
+            
+            <div className = "head">
+                {/* EVery other component is rendered here as a child of HOC */}
+                <Navbar/>
             </div>
             <div className = "main-content">
                 {/* EVery other component is rendered here as a child of HOC */}
