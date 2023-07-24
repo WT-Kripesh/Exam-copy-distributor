@@ -6,7 +6,7 @@ const sqlite = require( 'sqlite3');
 //     user: 'random',
 // })
 
-const db = new sqlite.Database('random.sqlite3')
+const db = new sqlite.Database('db/EPMS.sqlite3')
 try{
 
     console.log('Connection esablished')
@@ -26,9 +26,30 @@ try{
     //     if ( err ) throw err;
     //     console.log( 'Item stored ')
     // } )
+    // db.run(`DELETE FROM teachers WHERE teacherName = ?`,'ramesh',err => {if(err) console.log('An error occurred at line 29', err);})
 
-    db.get(`SELECT * FROM teachers`, ( err, row ) =>{
-        console.log( row );
+    // db.get(`SELECT * FROM teachers`, ( err, row ) =>{
+    //     console.log( row );
+    // })
+
+    // db.run(`ALTER TABLE teachers
+    // ADD password VARCHAR(255)`, err => console.log('An error occurred', err))
+
+
+    // db.run(`INSERT INTO teachers VALUES ( ?, ?, ?)`,
+    // ['', 'ramesh' , 'halleluja'])
+
+    // db.run(`DELETE FROM person WHERE fullName= ?`,'random',( err ) =>{
+    //     if ( err ) console.log( err )
+    // })
+
+    
+    db.run(`ALTER TABLE person
+     ADD password VARCHAR(255)`,err => console.log('An error occurred', err ))
+    //  ADD teachingExperience  INTEGER(255)`, err => console.log('An error occurred', err ))
+    
+    db.all(`SELECT * FROM person`, ( err, rows )=>{
+        rows.forEach(row => console.log( row ))
     })
 
 }

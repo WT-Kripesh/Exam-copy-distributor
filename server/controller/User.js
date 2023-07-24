@@ -35,21 +35,40 @@ module.exports.getById = function (id, cb) {
 
 module.exports.getByUsernamePassword = function (username, password, cb) {
   const query = `select * from admin where username=? and password=?`;
+  const teacherQuery = `SELECT * FROM person where email = ? AND password = ?`
   const db = connectToDB();
 
   db.get(query, username, md5(password), (err, row) => {
     console.log("Getting User");
     if (err) {
       console.error("Database Error");
-      cb(err);
+      cb(err, null);
+      return
     }
-    cb(null, row);
-    db.close((err) => {
-      console.log("Closing database Connection");
-      if (err) console.error(err);
-    });
+    if( row ) {
+      cb( null, row );
+      return
+    }
+    
+    db.get(teacherQuery,[ username, password], ( err, row)=>{
+      if (err) {
+        console.error("Database Error");
+        cb(err, null);
+        return
+      }
+      if( row ) {
+        cb( null, row );
+        return
+      }
+    })
+    
   });
 
+
+  db.close((err) => {
+    console.log("Closing database Connection");
+    if (err) console.error(err);
+  });
   // pool.getConnection(function (err, connection) {
   //   if (err) cb(err);
   //   console.log("Database connected for dbaccess");

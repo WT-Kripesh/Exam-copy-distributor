@@ -74,6 +74,57 @@ class Person extends React.Component {
         touched: false,
         validationText: "",
       },
+      password: {
+        element: "input",
+        value: "",
+        required: true,
+        labelText: "Password",
+        config: {
+          name: "name_input",
+          type: "password",
+          placeholder: "Enter your login password",
+        },
+        validation: {
+          required: false,
+        },
+        valid: true,
+        touched: false,
+        validationText: "",
+      },
+      teachingExperience:{
+        element: "input",
+        value: "",
+        required: true,
+        labelText: "Years of Experience",
+        config: {
+          name: "address_input",
+          type: "number",
+          placeholder: "Enter the email",
+        },
+        validation: {
+          required: false,
+        },
+        valid: true,
+        touched: false,
+      },
+      jobType:{
+        element: "select",
+        value: "",
+        required: true,
+        labelText: "Years of Experience",
+        config: {
+          name: "Job Type",
+          // type: "number",
+          // placeholder: "Enter the email",
+          options:[{ value: 'Full Time', text: 'Full Time' }, { value: 'Part Time' , text: 'Part Time'}]
+        },
+        validation: {
+          required: false,
+        },
+        valid: true,
+        touched: false,
+
+      }
     },
     error: false,
     errorText: "",
@@ -109,35 +160,35 @@ class Person extends React.Component {
     console.log(this.props);
 
     //Update route
-    if (this.props.match) {
-      const personID = this.props.match.params.personID;
-      if (personID !== undefined) {
-        fetch(
-          process.env.REACT_APP_BASE_URL + "API/query/getOnePerson/" + personID
-        )
-          .then((res) => res.json())
-          .then((json) => {
-            let { formData } = this.state;
-            //console.log(json[0]);
-            // formData.academicQualification.value =
-            //   json[0].academicQualification;
-            formData.campus.value = json[0].collegeID;
-            formData.contact.value = json[0].contact;
-            // formData.courseCode.value = json[0].courseCode;
-            formData.email.value = json[0].email;
-            // formData.experienceinthisSubj.value = json[0].experienceinthisSubj;
-            // formData.jobType.value = json[0].jobType;
-            formData.name.value = json[0].fullName;
-            // formData.programme.value = json[0].programme;
-            // formData.subject.value = json[0].subject;
-            // formData.teachingExperience.value = json[0].teachingExperience;
-            // formData.year_part.value = json[0].year_part;
-            this.setState({
-              formData,
-            });
-          });
-      }
-    }
+    // if (this.props.match) {
+      // const personID = this.props.match.params.personID;
+      // if (personID !== undefined) {
+      //   fetch(
+      //     process.env.REACT_APP_BASE_URL + "API/query/getOnePerson/" + personID
+      //   )
+      //     .then((res) => res.json())
+      //     .then((json) => {
+      //       let { formData } = this.state;
+      //       //console.log(json[0]);
+      //       // formData.academicQualification.value =
+      //       //   json[0].academicQualification;
+      //       formData.campus.value = json[0].collegeID;
+      //       formData.contact.value = json[0].contact;
+      //       // formData.courseCode.value = json[0].courseCode;
+      //       formData.email.value = json[0].email;
+      //       // formData.experienceinthisSubj.value = json[0].experienceinthisSubj;
+      //       // formData.jobType.value = json[0].jobType;
+      //       formData.name.value = json[0].fullName;
+      //       // formData.programme.value = json[0].programme;
+      //       // formData.subject.value = json[0].subject;
+      //       // formData.teachingExperience.value = json[0].teachingExperience;
+      //       // formData.year_part.value = json[0].year_part;
+      //       this.setState({
+      //         formData,
+      //       });
+      //     });
+      // }
+    // }
     this.loadCollegeOptions();
   }
 
@@ -217,7 +268,7 @@ class Person extends React.Component {
     const data = new FormData();
     data.append("file", this.state.selectedFile);
     if (this.state.selectedFile === null) {
-      await this.setState({
+      this.setState({
         isInserting: "empty",
         loaded: 0,
       });
@@ -235,7 +286,7 @@ class Person extends React.Component {
       }
     );
 
-    await this.setState({
+    this.setState({
       isInserting: "onProgress",
     });
 
@@ -249,13 +300,13 @@ class Person extends React.Component {
       }
     );
     if (response.status == 500) {
-      await this.setState({
+      this.setState({
         isInserting: "error",
         loaded: 0,
       });
     }
     if (response && response.status == 200) {
-      await this.setState({
+      this.setState({
         isInserting: "done",
       });
     }

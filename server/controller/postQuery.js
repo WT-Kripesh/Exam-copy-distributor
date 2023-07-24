@@ -299,7 +299,7 @@ router.post(
     //   '${req.body.academicQualification}',
     //   '${req.body.jobType}',
     //   '${req.body.email}'
-
+    
     //   )`;
     const newPerson = `INSERT INTO person (id, fullName, contact, collegeID, email) VALUES (?, ?, ?, ?, ?)`;
 

@@ -96,6 +96,7 @@ try {
         if (err) {
           return next(err);
         }
+        console.log('user authenticated')
         return res.sendStatus(200);
       });
     })(req, res, next);
