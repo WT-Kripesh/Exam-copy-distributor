@@ -66,22 +66,22 @@ class PackageTable extends React.Component {
     {
       text: "Edit",
       icon: faEdit,
-      link: "/edit-package/",
+      link: "/admin/edit-package/",
     },
     {
       text: "Delete",
       icon: faTrash,
-      link: "/delete/package/",
+      link: "/admin/delete/package/",
     },
   ];
   quickLinks = [
     {
       text: "Add New Package",
-      link: "/add-new-package",
+      link: "/admin/add-new-package",
     },
     {
       text: "Add New Exam",
-      link: "/add-new-Exam",
+      link: "/admin/add-new-Exam",
     },
   ];
 
@@ -153,7 +153,7 @@ class PackageTable extends React.Component {
   render() {
     console.log(this.state.tableData);
     return (
-      <div>
+      <div className ='mainTable'>
         <Table
           headings={this.headings}
           tableData={

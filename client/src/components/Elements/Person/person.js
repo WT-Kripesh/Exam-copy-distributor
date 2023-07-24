@@ -281,7 +281,7 @@ class Person extends React.Component {
   render() {
     return (
       <div clasName="container">
-        {this.errorCheck()}
+        {/* {this.errorCheck()} */}
         <MDBCard>
           <MDBCardHeader>
             Add New Person
@@ -298,8 +298,8 @@ class Person extends React.Component {
             </button> */}
           </MDBCardHeader>
           <MDBCardBody>
-            {this.state.isImport ? (
-              <div>
+            {/* {this.state.isImport ? ( */}
+              {/* <div>
                 {this.checkInserting()}
                 <MDBProgress value={this.state.loaded}>
                   {Math.round(this.state.loaded, 2)}%
@@ -313,14 +313,14 @@ class Person extends React.Component {
                 <button className="btn btn-secondary" onClick={this.uploadFile}>
                   UpLoad File
                 </button>
-              </div>
-            ) : (
+              </div> */}
+            {/* // ) : ( */}
               <FormFields
                 formData={this.state.formData}
                 change={(newState) => this.updateForm(newState)}
                 submitForm={(event) => this.submitForm(event)}
               />
-            )}
+            {/* // )} */}
           </MDBCardBody>
         </MDBCard>
       </div>

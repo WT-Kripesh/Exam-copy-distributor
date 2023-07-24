@@ -6,8 +6,12 @@ import DatePicker from "react-datepicker-nepali";
 import NepaliDatePicker from "./datePicker";
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {Link} from 'react-router-dom';
-const formFields = props => {
+import {Link, useNavigate } from 'react-router-dom';
+
+const FormFields = props => {
+
+  const navigate = useNavigate();
+
   const renderFields = () => {
     const formArray = [];
     for (let elementName in props.formData) {
@@ -321,7 +325,9 @@ const formFields = props => {
         className="btn btn-secondary"
         type="reset"
         id="saveandcontinue"
-        onClick={event => props.submitForm(event)}
+        onClick={event => {
+          navigate(-1)
+          props.submitForm(event)}}
         >
         Save and Continue
       </button> 
@@ -329,4 +335,4 @@ const formFields = props => {
   );
 };
 
-export default formFields;
+export default FormFields;

@@ -7,7 +7,7 @@ import Table from "../../Widgets/Tables/tables.js";
 import utils from "../../../utils/utils.js";
 
 class ExamTable extends React.Component {
-  quickLinks = [{ text: "Add New Exam", link: "/add-new-exam" }];
+  quickLinks = [{ text: "Add New Exam", link: "/admin/add-new-exam" }];
   headings = [
     {
       label: "Exam Title",
@@ -35,17 +35,17 @@ class ExamTable extends React.Component {
     {
       text: "Details",
       icon: faInfoCircle,
-      link: "/exam-details/",
+      link: "/admin/exam-details/",
     },
     {
       text: "Edit",
       icon: faEdit,
-      link: "/edit-exam/",
+      link: "/admin/edit-exam/",
     },
     {
       text: "Delete",
       icon: faTrash,
-      link: "/delete/exam/",
+      link: "/admin/delete/exam/",
     },
   ];
 
@@ -126,7 +126,7 @@ class ExamTable extends React.Component {
       //       actions={this.actions}
       //     />
       //   </div>
-      <div>
+      <div className = "examTable">
         <Table
           headings={this.headings}
           tableData={

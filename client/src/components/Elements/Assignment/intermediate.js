@@ -9,7 +9,7 @@ import "./assignment.css";
 const breadCrumbItem = [
   {
     text: "Person Table",
-    link: "/intermediate",
+    link: "/admin/intermediate",
   },
 ];
 
@@ -25,7 +25,7 @@ class Intermediate extends Component {
         <MDBCard>
           <MDBCardHeader>
             <span>Choose Person to Assign </span>
-            <Link to="/add-new-person" style={{ float: "right" }}>
+            <Link to="/admin/add-new-person" style={{ float: "right" }}>
               Not Registered Yet?
             </Link>
           </MDBCardHeader>

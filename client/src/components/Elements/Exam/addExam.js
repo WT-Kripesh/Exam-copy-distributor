@@ -3,6 +3,7 @@ import FormFields from "../../Widgets/Form/forms.js";
 import BreadCrumb from "../../Widgets/Breadcrumb/breadcrumb.js";
 import ExamTable from "./examListingTable.js";
 import { calendarFunctions } from "../../Widgets/jquery.nepaliDatePicker";
+// import { useNavigate } from 'react-router-dom'
 let adbs = require("ad-bs-converter");
 
 const breadCrumbItems = [
@@ -11,11 +12,11 @@ const breadCrumbItems = [
     link: "/admin/add-new-exam",
   },
 ];
-//import { async } from "q";
+
 class AddNewExam extends Component {
   constructor(props) {
     super(props);
-
+    // this.navigate = useNavigate()
     this.state = {
       formData: {
         level: {
@@ -154,6 +155,7 @@ class AddNewExam extends Component {
       errorOnSubmission: false,
       postedData: [],
     };
+    
   }
 
   loadProgramOptions = async () => {
@@ -267,6 +269,7 @@ class AddNewExam extends Component {
     await fetch(process.env.REACT_APP_BASE_URL + "API/query/getProgramList")
       .then((res) => res.json())
       .then((json) => {
+        // console.log( json )
         programData = json;
       });
 
@@ -277,7 +280,7 @@ class AddNewExam extends Component {
       });
 
     //Edit route
-    const examID = this.props.match.params.examID;
+    const examID = this.props.match?.params.examID;
     if (examID !== undefined) {
       await fetch(
         process.env.REACT_APP_BASE_URL + "API/query/getExams/" + examID
@@ -401,7 +404,7 @@ class AddNewExam extends Component {
     let methodType = "POST";
 
     //URL for update route
-    const examID = this.props.match.params.examID;
+    const examID = this.props.match?.params.examID;
     if (examID !== undefined) {
       url = `${process.env.REACT_APP_BASE_URL}API/query/editExam/${examID}`;
       methodType = "PUT";
@@ -419,7 +422,8 @@ class AddNewExam extends Component {
           let { postedData } = this.state;
           if (res.status === 200) {
             if (examID !== undefined || event.target.id === "save") {
-              this.props.history.goBack();
+              window.location = '/admin'
+              // navigate(-1);
               return;
             }
             console.log(body.exams[0]);

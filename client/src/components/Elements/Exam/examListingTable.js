@@ -61,12 +61,12 @@ export class ExamListingTable extends Component {
     {
       text: "Edit",
       icon: faEdit,
-      link: "/edit-exam/",
+      link: "admin/edit-exam/",
     },
     {
       text: "Delete",
       icon: faTrash,
-      link: "/delete/",
+      link: "admin/delete/",
     },
   ];
   UNSAFE_componentWillReceiveProps = (props) => {

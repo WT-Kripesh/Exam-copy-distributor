@@ -7,7 +7,7 @@ let adbs = require("ad-bs-converter");
 const breadCrumbItem = [
   {
     text: "Person Table",
-    link: "/intermediate",
+    link: "/admin/intermediate",
   },
   {
     text: "Assign Package",
@@ -220,8 +220,10 @@ class AssignPackage extends Component {
     return [year, month, day].join("/");
   }
   componentDidMount = () => {
-    let { params } = this.props.match;
-    console.log(params);
+    let currentLocation = window.location.href
+    let personID = currentLocation.substring(currentLocation.lastIndexOf('/') + 1 );
+    let params = { personID}
+
     Date.prototype.addDays = function (d) {
       return new Date(this.valueOf() + 864e5 * d);
     };
@@ -237,7 +239,7 @@ class AssignPackage extends Component {
         );
         let date = new Date();
         let deadlineDate = this.formatEnglishDateToNep(
-          this.formatDate(date.addDays(20))
+          this.formatDate(date.addDays(14))
         );
         console.log(assignmentDate);
         formData.name.value = json[0].fullName;

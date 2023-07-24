@@ -13,7 +13,6 @@ import AuthenticatedContext from "../../Context/AuthenticatedContext";
 import { toast } from 'react-toastify'
 
 const Header = (props) => {
-  const authenticated = useContext(AuthenticatedContext);
   const navigate = useNavigate();
   const [session, setSession] = useState("");
   useEffect(() => {
@@ -36,13 +35,13 @@ const Header = (props) => {
       <div className="main-header">
         {NavBar()}
         <div className="logo">
-          <Link to="/">
+          <Link to="/admin">
             <img alt="TU logo" src="/images/logo.png" height="64" width="55" />
           </Link>
         </div>
         <div className="text-area">
           <div className="main-title row">
-            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+            <Link to="/admin" style={{ textDecoration: "none", color: "white" }}>
               Exam Package Management System
             </Link>
             <h6 className=" text-secondary w-100 text-center">{session}</h6>
@@ -54,7 +53,6 @@ const Header = (props) => {
               onClick={() => {
                 fetch(`${process.env.REACT_APP_BASE_URL}API/logout`).then(( res ) => {
                   if( res.ok ){
-                    console.log('About to log out')
                      navigate( '/login')
                   }
                    else toast('Coundn\'t Logout')   

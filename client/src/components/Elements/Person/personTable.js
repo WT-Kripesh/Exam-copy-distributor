@@ -78,12 +78,12 @@ class PersonTable extends React.Component {
     {
       text: "Edit",
       icon: faEdit,
-      link: "/edit-person/",
+      link: "/admin/edit-person/",
     },
     {
       text: "Delete",
       icon: faTrash,
-      link: "/delete/person/",
+      link: "/admin/delete/person/",
     },
   ];
 
@@ -106,7 +106,7 @@ class PersonTable extends React.Component {
           for (let key in element)
             if (key !== "id")
               element[key] = (
-                <Link key={index} to={`/assign-package/${id}`}>
+                <Link key={index} to={`/admin/assign-package/${id}`}>
                   {element[key]}
                 </Link>
               );

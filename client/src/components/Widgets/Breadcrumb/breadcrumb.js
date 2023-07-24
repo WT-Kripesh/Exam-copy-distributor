@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 const BreadcrumSection = (props) => {
   
   const breadCrumbItem = ()=>{
-    console.log(props)
+    // console.log(props)
     if(props.breadcrumbItems)  
     return props.breadcrumbItems.map((element, index)=>{
         return(

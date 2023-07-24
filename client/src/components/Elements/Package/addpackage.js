@@ -12,12 +12,12 @@ const breadCrumbItems = [
 const quickLinks = [
   {
     text: "Add New Program",
-    link: "/add-new-program",
+    link: "/admin/add-new-program",
     button: "primary",
   },
   {
     text: "Add New Exam",
-    link: "/add-new-Exam",
+    link: "/admin/add-new-Exam",
     button: "secondary",
   },
 ];
@@ -128,7 +128,7 @@ class AddNewPackage extends Component {
         touched: false,
         validationText: "",
         quickLink: {
-          link: "/add-new-program",
+          link: "/admin/add-new-program",
         },
       },
       // year: {
@@ -183,7 +183,7 @@ class AddNewPackage extends Component {
         touched: false,
         validationText: "",
         quickLink: {
-          link: "/add-new-subject",
+          link: "/admin/add-new-subject",
         },
       },
 
@@ -204,7 +204,7 @@ class AddNewPackage extends Component {
         touched: false,
         validationText: "",
         quickLink: {
-          link: "/add-new-exam",
+          link: "/admin/add-new-exam",
         },
       },
     },
@@ -359,6 +359,7 @@ class AddNewPackage extends Component {
     await fetch(process.env.REACT_APP_BASE_URL + "API/query/getProgramList")
       .then((res) => res.json())
       .then((json) => {
+        console.log( json )
         programData = json;
       });
 
@@ -373,7 +374,7 @@ class AddNewPackage extends Component {
         examData = json;
       });
 
-    const packageID = this.props.match.params.packageID;
+    const packageID = this.props.match?.params.packageID;
     if (packageID !== undefined) {
       fetch(
         process.env.REACT_APP_BASE_URL + "API/query/getOnePackage/" + packageID
@@ -468,7 +469,7 @@ class AddNewPackage extends Component {
     let url = `${process.env.REACT_APP_BASE_URL}API/query/addPackage`;
     let methodType = "POST";
     //URL for update route
-    const packageID = this.props.match.params.packageID;
+    const packageID = this.props.match?.params.packageID;
     if (packageID !== undefined) {
       url = `${process.env.REACT_APP_BASE_URL}API/query/editPackage/${packageID}`;
       methodType = "PUT";

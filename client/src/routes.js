@@ -32,7 +32,7 @@ import Delete from "./components/Elements/Delete";
 
 import Test from "./components/Widgets/test.js";
 import Login from "./components/Elements/Login/login.js";
-import AuthenticatedContext from "./Context/AuthenticatedContext.js";
+// import AuthenticatedContext from "./Context/AuthenticatedContext.js";
 import Session from "./components/Elements/Session/Session.js";
 
 
@@ -81,6 +81,11 @@ const router = createBrowserRouter([
         },
         
         // Exam Router
+        {
+          path: '/admin/exams',
+          element: <ExamTable />
+        },
+        
         {
           path: "/admin/add-new-exam",
           element: <AddNewExam />,
@@ -150,10 +155,6 @@ const router = createBrowserRouter([
         {
           path: '/admin/programs' ,
           element: <Program />
-        },
-        {
-          path: '/admin/exams',
-          element: <ExamTable />
         },
         {
           path: '/admin/session',
