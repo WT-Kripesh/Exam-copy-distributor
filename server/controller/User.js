@@ -5,18 +5,39 @@ const md5 = require("md5");
 module.exports.getById = function (id, cb) {
   const db = connectToDB();
   const query = `select * from admin where id=?`;
+  const teacherQuery = `SELECT * FROM person where id = ?`
   db.get(query, id, (err, row) => {
     console.log("Getting User");
     if (err) {
       console.error("Database Error");
-      cb(err);
+      cb(err, null);
+      return
     }
-    cb(null, row);
-    db.close((err) => {
-      console.log("Closing database Connection");
-      if (err) console.error(err);
-    });
-  });
+    if( row ) {
+      cb( null, row );
+      return
+    }
+    
+    db.get(teacherQuery, id, ( err, row)=>{
+      if (err) {
+        console.error("Database Error");
+        cb(err, null);
+        return
+      }
+      if( row ) {
+        cb( null, row );
+        return
+      }
+    })
+    db.close( err =>{
+      console.log("Closing Database")
+      if( err ){
+        console.log( "Database closing error", err );
+      }
+
+    })
+  
+  })
   // pool.getConnection(function (err, connection) {
   //   if (err) cb(err);
   //   console.log("Database connected for dbaccess");

@@ -99,7 +99,7 @@ class Person extends React.Component {
         config: {
           name: "address_input",
           type: "number",
-          placeholder: "Enter the email",
+          placeholder: "Years of Experience",
         },
         validation: {
           required: false,
@@ -111,7 +111,7 @@ class Person extends React.Component {
         element: "select",
         value: "",
         required: true,
-        labelText: "Years of Experience",
+        labelText: "Job Type",
         config: {
           name: "Job Type",
           // type: "number",

@@ -22,7 +22,13 @@ const Login = () => {
           }).then((res) => {
 
             if (res.ok) {
-              navigation("/admin");
+                if( loginCredential.username == 'admin'){
+                    navigation("/admin");
+
+                }
+                else {
+                    navigation(`/teacher/${loginCredential.username}`)
+                }
             }
             else  alert("Username/Password is wrong!!")
           })

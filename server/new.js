@@ -44,14 +44,17 @@ try{
     // })
 
     
-    db.run(`ALTER TABLE person
-     ADD password VARCHAR(255)`,err => console.log('An error occurred', err ))
-    //  ADD teachingExperience  INTEGER(255)`, err => console.log('An error occurred', err ))
+    // db.run(`ALTER TABLE person
+    //  ADD password VARCHAR(255)`,err => console.log('An error occurred', err ))
+    // //  ADD teachingExperience  INTEGER(255)`, err => console.log('An error occurred', err ))
+    
+    db.run(`UPDATE person
+    SET password = 'random'
+    WHERE email ='random@gmail.com'`, err => {if ( err) console.log( 'An error occurred',err)});
     
     db.all(`SELECT * FROM person`, ( err, rows )=>{
         rows.forEach(row => console.log( row ))
     })
-
 }
 
 catch( err ) {

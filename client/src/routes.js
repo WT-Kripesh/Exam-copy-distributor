@@ -32,10 +32,17 @@ import Delete from "./components/Elements/Delete";
 
 import Test from "./components/Widgets/test.js";
 import Login from "./components/Elements/Login/login.js";
-// import AuthenticatedContext from "./Context/AuthenticatedContext.js";
 import Session from "./components/Elements/Session/Session.js";
 
+import Teacher from "./pages/teacher"
 
+
+
+const loader = async ( {params} ) =>{
+  const teacherID = params.teacherID
+  const result = await fetch( `${process.env.REACT_APP_BASE_URL}API/getAllPackages`).then( res => res.json())
+  return result  
+}
 const router = createBrowserRouter([
   {
     path: '/',
@@ -44,6 +51,11 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element : <Login />
+  },
+  {
+    path: '/teacher/:teacherID',
+    loader: loader,
+    element: <Teacher />
   },
   { 
     path: '/admin',
