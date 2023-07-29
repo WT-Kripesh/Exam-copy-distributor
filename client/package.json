@@ -3,20 +3,23 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
+		"@emotion/react": "^11.11.1",
+		"@emotion/styled": "^11.11.0",
 		"@fortawesome/fontawesome-svg-core": "^1.2.19",
 		"@fortawesome/free-solid-svg-icons": "^5.9.0",
 		"@fortawesome/react-fontawesome": "^0.1.4",
+		"@mui/icons-material": "^5.14.1",
+		"@mui/material": "^5.14.1",
 		"ad-bs-converter": "^0.5.0",
 		"axios": "^1.4.0",
 		"jquery": "^3.4.1",
 		"mdbreact": "^4.6.1",
 		"nepali-date-picker": "^2.0.1",
-		"node": "^20.2.0",
-		"react": "^16.8.6",
+		"react": "^18.2.0",
 		"react-breadcrumbs-dynamic": "^1.2.1",
 		"react-confirm-alert": "^2.4.1",
 		"react-datepicker-nepali": "^1.0.1",
-		"react-dom": "^16.8.6",
+		"react-dom": "^18.2.0",
 		"react-dropdown-select": "^3.3.2",
 		"react-fontawesome": "^1.6.1",
 		"react-router-dom": "^6.14.1",
@@ -46,5 +49,8 @@
 			"last 1 safari version"
 		]
 	},
-	"proxy": "http://localhost:4000"
+	"proxy": "http://localhost:4000/",
+	"devDependencies": {
+		"eslint-plugin-react-hooks": "^4.6.0"
+	}
 }

@@ -35,6 +35,7 @@ import Login from "./components/Elements/Login/login.js";
 import Session from "./components/Elements/Session/Session.js";
 
 import Teacher from "./pages/teacher"
+import Navbar from  './components/Header/Navbar.js'
 
 
 
