@@ -39,7 +39,7 @@ export default function ButtonAppBar() {
           </Link>
           </IconButton>
           <Link to="/admin"><Typography variant="h5" component="div" sx={{ flexGrow: 0.3 , color:'white'}}>
-            Exam package management sys
+            Exam Package Management System
           </Typography></Link>
          
           <Stack direction="row" spacing={2} sx={{ml:'400px' , flexGrow: 0.3}}>

@@ -6,7 +6,7 @@ import BreadCrumb from "../../Widgets/Breadcrumb/breadcrumb.js";
 const breadCrumbItems = [
   {
     text: "Add New Package",
-    link: "/add-new-package",
+    link: "/admin/add-new-package",
   },
 ];
 const quickLinks = [

@@ -118,7 +118,7 @@ const [categories, setCategories] = useState({})
  )
 }
 
-export default ExamListingTable()
+export default ExamListingTable
 
 
 // export class ExamListingTable extends Component {

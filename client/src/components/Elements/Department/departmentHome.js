@@ -14,19 +14,19 @@ class DepartmentHome extends React.Component {
   quickLinks = [
     {
       text: "Add New Department",
-      link: "/add-new-department",
+      link: "/admin/add-new-department",
     },
   ];
   actions = [
     {
       text: "Edit",
       icon: faEdit,
-      link: "/edit-department/",
+      link: "/admin/edit-department/",
     },
     {
       text: "Delete",
       icon: faTrash,
-      link: "/delete/department/",
+      link: "/admin/delete/department/",
     },
   ];
   state = {

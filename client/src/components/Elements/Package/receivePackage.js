@@ -290,7 +290,7 @@ class ReceivePackage extends Component {
   };
   render() {
     if (this.state.packageReceived) {
-      return <Navigate replace to="/" />;
+      return <Navigate replace to="/admin" />;
     }
     return (
       <div>

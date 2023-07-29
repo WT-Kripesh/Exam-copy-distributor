@@ -38,7 +38,7 @@ class AddNewDepartment extends Component {
 	componentDidMount = () => {
 		//Edit route
 
-		const departmentID = this.props.match.params.departmentID;
+		const departmentID = this.props.match?.params.departmentID;
 		if (departmentID !== undefined) {
 			fetch(
 				`${process.env.REACT_APP_BASE_URL}API/query/getOneDepartment/` +
@@ -85,7 +85,7 @@ class AddNewDepartment extends Component {
 		let methodType = "POST";
 
 		//URL for update route
-		const departmentID = this.props.match.params.departmentID;
+		const departmentID = this.props.match?.params.departmentID;
 		if (departmentID !== undefined) {
 			url = `${process.env.REACT_APP_BASE_URL}API/query/editDepartment/${departmentID}`;
 			methodType = "PUT";

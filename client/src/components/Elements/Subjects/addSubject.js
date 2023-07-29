@@ -184,7 +184,7 @@ class AddNewSubject extends Component {
       });
 
     //Edit route
-    const subjectID = this.props.match.params.subjectID;
+    const subjectID = this.props.match?.params.subjectID;
     if (subjectID !== undefined) {
       fetch(
         process.env.REACT_APP_BASE_URL + "API/query/getOneSubject/" + subjectID
@@ -255,7 +255,7 @@ class AddNewSubject extends Component {
     let methodType = "POST";
 
     //URL for update route
-    const subjectID = this.props.match.params.subjectID;
+    const subjectID = this.props.match?.params.subjectID;
     if (subjectID !== undefined) {
       url = `${process.env.REACT_APP_BASE_URL}API/query/editSubject/${subjectID}`;
       methodType = "PUT";

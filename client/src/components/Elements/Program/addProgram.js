@@ -87,7 +87,7 @@ class AddNewProgram extends Component {
       });
 
     //Edit route
-    const programID = this.props.match.params.programID;
+    const programID = this.props.match?.params.programID;
     if (programID !== undefined) {
       fetch(
         process.env.REACT_APP_BASE_URL + "API/query/getProgram/" + programID
@@ -137,7 +137,7 @@ class AddNewProgram extends Component {
     let methodType = "POST";
 
     //URL for update route
-    const programID = this.props.match.params.programID;
+    const programID = this.props.match?.params.programID;
     if (programID !== undefined) {
       url = `${process.env.REACT_APP_BASE_URL}API/query/editProgram/${programID}`;
       methodType = "PUT";

@@ -26,19 +26,19 @@ class ProgramTable extends Component {
   quickLinks = [
     {
       text: "Add New Program",
-      link: "/add-new-program",
+      link: "/admin/add-new-program",
     },
   ];
   actions = [
     {
       text: "Edit",
       icon: faEdit,
-      link: "/edit-program/",
+      link: "/admin/edit-program/",
     },
     {
       text: "Delete",
       icon: faTrash,
-      link: "/delete/program/",
+      link: "/admin/delete/program/",
     },
   ];
 

@@ -38,18 +38,18 @@ class SubjectTable extends Component {
     {
       text: "Edit",
       icon: faEdit,
-      link: "/edit-subject/",
+      link: "/admin/edit-subject/",
     },
     {
       text: "Delete",
       icon: faTrash,
-      link: "/delete/subject/",
+      link: "/admin/delete/subject/",
     },
   ];
   quickLinks = [
     {
       text: "Add New Subject",
-      link: "/add-new-subject",
+      link: "/admin/add-new-subject",
     },
   ];
 

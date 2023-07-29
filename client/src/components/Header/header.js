@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./header.css";
+// import "./header.css";
 import { Link , useNavigate} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,7 +7,7 @@ import {
   // faUser,
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import SideNav from "./SideNav/sidenav.js";
+// import SideNav from "./SideNav/sidenav.js";
 import { useContext } from "react";
 import AuthenticatedContext from "../../Context/AuthenticatedContext";
 import { toast } from 'react-toastify'
@@ -31,9 +31,9 @@ const Header = (props) => {
   };
   return (
     <div className="header">
-      <SideNav {...props} />
+      {/* <SideNav {...props} /> */}
       <div className="main-header">
-        {NavBar()}
+        {/* {NavBar()} */}
         <div className="logo">
           <Link to="/admin">
             <img alt="TU logo" src="/images/logo.png" height="64" width="55" />
@@ -85,4 +85,4 @@ const Header = (props) => {
   );
 };
 
-export default Header;
+// export default Header;
