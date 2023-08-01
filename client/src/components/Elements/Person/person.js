@@ -136,7 +136,7 @@ class Person extends React.Component {
   };
   loadCollegeOptions = async () => {
     let { formData } = this.state;
-    fetch("/API/query/getCollegeList")
+    fetch(process.env.REACT_APP_BASE_URL + "API/query/getCollegeList")
       .then((res) => {
         if (res.ok) return res.json();
       })

@@ -1,48 +1,68 @@
 import * as React from 'react';
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import { useContext } from "react";
-import AuthenticatedContext from "../../Context/AuthenticatedContext";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import Avatar from '@mui/material/Avatar';
+
 export default function ButtonAppBar() {
   // const authenticated = useContext(AuthenticatedContext);
 
-  // const [session, setSession] = useState("");
-  // useEffect(() => {
-  //   fetch(process.env.REACT_APP_BASE_URL + "API/query/getSessionName")
-  //     .then((res) => res.json())
-  //     .then((json) => setSession(json.sessionName))
-  //     .catch((err) => console.log(err));
-  // }, []);
+  const [session, setSession] = useState("");
+  useEffect(() => {
+    fetch(process.env.REACT_APP_BASE_URL + "API/query/getSessionName")
+      .then((res) => res.json())
+      .then((json) => setSession(json.sessionName))
+      .catch((err) => console.log(err));
+  }, []);
+
+
+  const navigate = useNavigate();
+
+  const logout = () =>{
+    fetch( process.env.REACT_APP_BASE_URL + "API/logout").then( 
+      ( res ) =>{
+        console.log( res )
+        if( res.ok){
+          navigate('/login');        
+        }
+      }
+    )
+  }
+  
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{minHeight: '150px', alignItems:'center',display:'flex',justifyContent: 'center'  }}>
+      <AppBar position="static" sx={{minHeight: '150px',display:'flex',justifyContent: 'center'  }}>
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-             <Link to="/">
-            <img alt="TU logo" src="/images/logo.png" height="64" width="55" />
-          </Link>
-          </IconButton>
-          <Link to="/admin"><Typography variant="h5" component="div" sx={{ flexGrow: 0.3 , color:'white'}}>
-            Exam Package Management System
-          </Typography></Link>
+          <div className = 'logo' style = {{display: 'flex'}}>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+            >
+              <Link to="/admin">
+              <img alt="TU logo" src="/images/logo.png" width="55" />
+            </Link>
+            </IconButton>
+            <Link to="/admin">
+              <Typography variant="h5" sx={{ color:'white'}}>
+              Exam Package Management System
+              </Typography>
+              <Typography variant = 'h7' sx = {{ color: 'white', textAlign: 'center', fontWeight: '400'}}>
+                { session || 'no-session-exists' }
+
+              </Typography>
+            </Link>
+
+          </div>
          
-          <Stack direction="row" spacing={2} sx={{ml:'400px' , flexGrow: 0.3}}>
+          <Stack direction="row" spacing={2} sx = {{ml: 'auto'}}>
           <Link to="/admin/session"><Typography variant="h8" component="div" sx={{ flexGrow: 0.5, color:'white' }}>
             Session
           </Typography></Link>
@@ -64,15 +84,7 @@ export default function ButtonAppBar() {
           <Link to="/admin/intermediate">  <Typography variant="h8" component="div" sx={{ flexGrow: 0.5, color:'white' }}>
             Person
           </Typography></Link>
-          
-          
-          
-          
-          
-         
-          {/* <Avatar src="/broken-image.jpg" sx={{ flexGrow: 0.6, justifyContent:'center'}} /> */}
-          
-          <Link to ="/"><Button color="inherit" sx={{ flexGrow: 0.5, color:'white' }}>Login</Button></Link>
+           <Button color="inherit" sx={{ color:'white', padding: '0' }} onClick = { () => logout() }>Logout</Button>
       </Stack>
       {/* {authenticated ? (
           <div className="user-logo">
