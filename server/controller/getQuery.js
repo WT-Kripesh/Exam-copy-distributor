@@ -31,6 +31,33 @@ router.get("/getPendingPackages", (req, res) => {
   });
 });
 
+router.get( '/getPersonSpecificPackage/:personID', ( req, res ) => {
+  const getPersonSpecificPackage = `SELECT packageCode, subjectName, dateOfAssignment, dateOfDeadline, per.email as email  FROM person per INNER JOIN
+                                  (SELECT id AS assignmentId, dateOfAssignment, dateOfDeadline, subjectName, packageCode, ass.personID AS person_id FROM assignment ass INNER JOIN
+                                    (SELECT  pac.id AS package_id, subjectName, pac.packageCode FROM package pac INNER JOIN
+                                      (SELECT ex.id AS exam_id, sub.subjectName FROM subject sub INNER JOIN exam ex ON ex.subjectID = sub.id )
+                                      AS exam_sub ON exam_sub.exam_id = pac.examID)
+                                    AS sep ON sep.package_id = ass.packageID AND ass.dateOfSubmission IS NULL )
+                                  AS sepa ON sepa.person_id = per.id 
+                                  WHERE email = ?
+                                  ORDER BY dateOfAssignment`
+  
+  const db = connectToDB();
+
+  db.all( getPersonSpecificPackage, [ req.params.personID], ( err, rows ) =>{
+    if( err ) res.status( 404 ).send("The data does not exist");
+    else{
+      res.status(200).send( JSON.parse(JSON.stringify(rows)));
+      console.log( rows )
+      console.log("Person Specific Packages sent");
+    }
+
+  })
+  db.close( err =>{
+    if( err ) console.log(err.message)
+    console.log("Close the database connction")
+  })
+})
 router.get("/getPendingExamPackages/:id", (req, res) => {
 
   const pendingPackagequery = `SELECT assignmentId AS id, packageCode, subjectName, dateOfAssignment, dateOfDeadline,  per.fullName, per.contact, per.email FROM person per INNER JOIN
@@ -85,13 +112,7 @@ router.get("/getAssignments", (req, res) => {
           });
         });
         
-router.get( '/getPersonSpecificPackage/:personID', ( req, res ) => {
-  const getPPersonSpecifiPackage = `SELECT *`
-})
 router.get("/getExams", (req, res) => {
-  // const examGetterQuery = `SELECT exam.id, exam.date, exam.examType, exam.subjectID , subject.subjectName,
-  // 	courseCode, year, part, programName
-  // 	FROM exam JOIN (subject JOIN program ON programID=program.id) ON subjectID = subject.id;`;
   
   const examGetterQuery = `SELECT exam.id, exam.date, exam.examType, exam.subjectID , subject.subjectName,
   courseCode, programName

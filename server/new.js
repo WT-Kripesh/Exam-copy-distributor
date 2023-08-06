@@ -75,13 +75,23 @@ try{
     //     if ( err ) console.log( err );
     // })
     // db.run(`INSERT INTO teacher_subject VALUES ( ? , ? )`, )
-    const examGetterQuery = `SELECT exam.id, exam.date, exam.examType, exam.subjectID , subject.subjectName,
-  courseCode, programName
-  FROM exam JOIN (subject JOIN program ON programID=program.id) ON subjectID = subject.id;`;
+  //   const examGetterQuery = `SELECT exam.id, exam.date, exam.examType, exam.subjectID , subject.subjectName,
+  // courseCode, programName
+  // FROM exam JOIN (subject JOIN program ON programID=program.id) ON subjectID = subject.id;`;
+  const examGetterQuery = `SELECT packageCode, subjectName, dateOfAssignment, dateOfDeadline, per.email as email  FROM person per INNER JOIN
+		(SELECT id AS assignmentId, dateOfAssignment, dateOfDeadline, subjectName, packageCode, ass.personID AS person_id FROM assignment ass INNER JOIN
+			(SELECT  pac.id AS package_id, subjectName, pac.packageCode FROM package pac INNER JOIN
+				(SELECT ex.id AS exam_id, sub.subjectName FROM subject sub INNER JOIN exam ex ON ex.subjectID = sub.id )
+				AS exam_sub ON exam_sub.exam_id = pac.examID)
+			 AS sep ON sep.package_id = ass.packageID AND ass.dateOfSubmission IS NULL )
+		 AS sepa ON sepa.person_id = per.id 
+     WHERE email = ?
+     ORDER BY dateOfAssignment`
 
-    db.all(examGetterQuery, [], (err, rows) => {
+    db.all(examGetterQuery, ["random@gmail.com"], (err, rows) => {
     if (err) {
     //   res.status(404).send("The data does not exist");
+      console.log( err )
     } else {
     //   res.status(200).send(JSON.parse(JSON.stringify(rows)));
       console.log("Exams returned");

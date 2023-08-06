@@ -35,12 +35,12 @@ class MainTable extends React.Component {
       {
         label: "Action",
         sort: "",
+        field: "action"
       },
     ];
     //to make SN first column and Action Last column
     let columns = [remainingColumns[0], ...headings, remainingColumns[1]];
     let rows = tableData.map((datas, index) => {
-      //   console.log(datas);
       let tempData = {};
       tempData["sn"] = index + 1;
       for (let key in datas) {
@@ -53,16 +53,15 @@ class MainTable extends React.Component {
       }
       //Adding Icon/Button in Action Column in every row
       let actionTemplate = actions.map((action, index) => {
-        // console.log("ID", datas.id);
         let templates = null;
         if (action.hasOwnProperty("onClick")) {
           templates = (
             <button
               key={index}
               className="btn-xs btn-primary"
-              onClick={() => action.onClick(datas["id"])}
+              onClick={() => action.onClick()}
             >
-              Receive Package
+              {action.text }
             </button>
           );
         } else {
@@ -108,7 +107,6 @@ class MainTable extends React.Component {
 
         tempData["Overdue"] = blinkingButton;
       }
-      //   console.log(tempData)
       tempData["action"] = actionTemplate;
       return tempData;
     });
@@ -145,7 +143,7 @@ class MainTable extends React.Component {
           />
         )}
 
-        <div className="mainTable">
+        <div>
           <MDBDataTable
             //searching={false}
             data={this.data()}

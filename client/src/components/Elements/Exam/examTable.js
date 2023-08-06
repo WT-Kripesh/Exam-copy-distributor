@@ -22,13 +22,6 @@ class ExamTable extends React.Component {
       field: "type",
       grouping: true,
     },
-    // {
-    //   label: "Year/Part",
-    //   text: "Part",
-    //   sort: "asc",
-    //   field: "yearPart",
-    //   grouping: true,
-    // },
   ];
 
   actions = [
@@ -67,8 +60,9 @@ class ExamTable extends React.Component {
       return rv;
     }, {});
   };
-
-  componentDidlMount = () => {
+  
+  componentDidMount = () => {
+    console.log( 'hellow')
     fetch(process.env.REACT_APP_BASE_URL + "API/query/getExams")
       .then((res) => res.json())
       .then((json) => {
@@ -79,7 +73,7 @@ class ExamTable extends React.Component {
           // const part = element.part === "I" ? "Odd" : "Even";
           const type = element.examType;
           const sub = element.subjectName;
-
+          
           element.examTitle = sub + " - " + examYear + " - " + "(" + type + ")";
         });
 
@@ -112,20 +106,9 @@ class ExamTable extends React.Component {
     this.setState(states);
   };
   render() {
+    console.log('error')
     console.log(this.state.tableData);
-    //let { isLoaded } = this.state;
     return (
-      //   <div className="container-fluid">
-      //     <Table
-      //       headings={this.headings}
-      //       tableData={
-      //         this.state.noResult ? this.state.filtered : this.state.tableData
-      //       }
-      //       state={this.state}
-      //       setState={states => this.statehandler(states)}
-      //       actions={this.actions}
-      //     />
-      //   </div>
       <div className = "examTable">
         <Table
           headings={this.headings}

@@ -36,12 +36,47 @@ import Session from "./components/Elements/Session/Session.js";
 
 import Teacher from "./pages/teacher"
 
+const adbs = require("ad-bs-converter")
 
 
 const loader = async ( {params} ) =>{
   const teacherID = params.teacherID
-  const result = await fetch( `${process.env.REACT_APP_BASE_URL}API/query/getPackages`).then( res => res.json())
-  return result  
+  const result = await fetch( `${process.env.REACT_APP_BASE_URL}API/query/getPersonSpecificPackage/${teacherID}`)
+  if( result.ok )
+  {
+    const jsonResult = await result.json();
+    const parseDate = (str)=>{
+      //Convert to english
+      const englishDate = adbs.bs2ad(str);
+      return new Date(englishDate.year, englishDate.month - 1, englishDate.day);
+    }
+    const findDateDifference = (myDate) => {
+      const now = new Date();
+      now.setHours(0, 0, 0);
+    // Discard the time and time-zone information.
+      const utc1 = Date.UTC(
+      myDate.getFullYear(),
+      myDate.getMonth(),
+      myDate.getDate()
+    );
+    const utc2 = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.round((utc1 - utc2) / (1000 * 60 * 60 * 24));
+  }
+  
+  jsonResult.forEach( ( element ) =>{
+    const myDate = parseDate( 
+      element["dateOfDeadline"].split("T")[0].replaceAll("-", "/")
+      )
+      const diff = findDateDifference(myDate );
+      element["Overdue"] = { isOverdue: diff < 0, days: Math.abs(diff) };
+      element["status"] = diff < 0 ? "Overdue" : "Pending";
+      element["dateOfDeadline"] = element["dateOfDeadline"].split("T")[0];
+      element["dateOfAssignment"] = element["dateOfAssignment"].split("T")[0];
+      
+    })
+    return jsonResult
+  }
+  return null  
 }
 const router = createBrowserRouter([
   {
