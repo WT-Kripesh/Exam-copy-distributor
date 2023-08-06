@@ -115,14 +115,14 @@ router.post(
   }
 );
 
-router.post(
-  "/addExam",
+router.post("/addExam",
   [
     check("subjectID").exists().not().isEmpty(),
     check("examType").exists().isIn(["Regular", "Back"]),
     check("date").exists().not().isEmpty(),
   ],
   (req, res) => {
+    console.log('Request for ')
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });

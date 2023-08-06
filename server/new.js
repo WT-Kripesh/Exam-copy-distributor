@@ -57,24 +57,43 @@ try{
     //     rows.forEach(row => console.log( row ))
     // })
 
-    db.all(`SELECT * FROM subject`, ( err, rows ) =>{
-        rows.forEach( row => console.log( row ))
-    })
+    // db.all(`SELECT * FROM subject`, ( err, rows ) =>{
+    //     rows.forEach( row => console.log( row ))
+    // })
 
-    db.all(`SELECT * FROM person`, ( err, rows ) =>{
-        rows.forEach( row => console.log( row ));
-    })
+    // db.all(`SELECT * FROM person`, ( err, rows ) =>{
+    //     rows.forEach( row => console.log( row ));
+    // })
 
-    db.run(`CREATE TABLE person_subject (
-        person_id INT,
-        subject_id INT,
-        PRIMARY KEY ( person_id, subject_id ),
-        FOREIGN KEY ( person_id ) REFERENCES person( id ),
-        FOREIGN KEY ( subject_id ) REFERENCES subject( id ) 
-    )`, err => {
-        if ( err ) console.log( err );
-    })
+    // db.run(`CREATE TABLE person_subject (
+    //     person_id INT,
+    //     subject_id INT,
+    //     PRIMARY KEY ( person_id, subject_id ),
+    //     FOREIGN KEY ( person_id ) REFERENCES person( id ),
+    //     FOREIGN KEY ( subject_id ) REFERENCES subject( id ) 
+    // )`, err => {
+    //     if ( err ) console.log( err );
+    // })
     // db.run(`INSERT INTO teacher_subject VALUES ( ? , ? )`, )
+    const examGetterQuery = `SELECT exam.id, exam.date, exam.examType, exam.subjectID , subject.subjectName,
+  courseCode, programName
+  FROM exam JOIN (subject JOIN program ON programID=program.id) ON subjectID = subject.id;`;
+
+    db.all(examGetterQuery, [], (err, rows) => {
+    if (err) {
+    //   res.status(404).send("The data does not exist");
+    } else {
+    //   res.status(200).send(JSON.parse(JSON.stringify(rows)));
+      console.log("Exams returned");
+      console.log( rows );
+    }
+  });
+  db.close((err) => {
+    if (err) {
+      console.error(err.message);
+    }
+    console.log("Close the database connection.");
+  });
 }
 
 catch( err ) {
