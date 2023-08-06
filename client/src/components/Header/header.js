@@ -8,8 +8,6 @@ import {
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
 // import SideNav from "./SideNav/sidenav.js";
-import { useContext } from "react";
-import AuthenticatedContext from "../../Context/AuthenticatedContext";
 import { toast } from 'react-toastify'
 
 const Header = (props) => {

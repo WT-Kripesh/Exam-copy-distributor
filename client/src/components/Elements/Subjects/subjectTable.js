@@ -1,21 +1,12 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, useState } from "react";
 import Table from "../../Widgets/Tables/tables.js";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import utils from "../../../utils/utils.js";
+
+
 class SubjectTable extends Component {
   headings = [
-    // {
-    //   label: "Year",
-    //   sort: "asc",
-    //   field: "year",
-    //   grouping: true,
-    // },
-    // {
-    //   label: "Part",
-    //   sort: "asc",
-    //   field: "part",
-    //   grouping: true,
-    // },
+
     {
       label: "Subject Name",
       sort: "asc",

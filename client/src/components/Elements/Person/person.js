@@ -1,7 +1,9 @@
 import React from "react";
 import FormFields from "../../Widgets/Form/forms.js";
-import { MDBCard, MDBCardHeader, MDBCardBody, MDBProgress } from "mdbreact";
+import { MDBCard, MDBCardHeader, MDBCardBody } from "mdbreact";
 import axios from "axios";
+
+
 class Person extends React.Component {
   state = {
     formData: {
@@ -91,6 +93,24 @@ class Person extends React.Component {
         touched: false,
         validationText: "",
       },
+      subjectTaught: {
+        element: "select",
+        value: "",
+        required: true,
+        labelText: "Subject Taught",
+        config: {
+          name: "Subject",
+          options: [{ val: "", text: "" }],
+          placeholder:"Select the subject Taught"
+        },
+        validation: {
+          required: false,
+        },
+        valid: true,
+        touched: false,
+        validationText: "",
+      },
+
       teachingExperience:{
         element: "input",
         value: "",
@@ -114,13 +134,9 @@ class Person extends React.Component {
         labelText: "Job Type",
         config: {
           name: "Job Type",
-          // type: "number",
-          // placeholder: "Enter the email",
           options:[{ value: 'Full Time', text: 'Full Time' }, { value: 'Part Time' , text: 'Part Time'}]
         },
-        validation: {
-          required: false,
-        },
+
         valid: true,
         touched: false,
 
@@ -150,6 +166,23 @@ class Person extends React.Component {
         console.log("newFormData", newFormData)
       });
   };
+
+  loadSubjectOptions = () =>{
+    let { formData} = this.state;
+    fetch( process.env.REACT_APP_BASE_URL + "API/query/getSubjectList")
+      .then( res =>{
+        if ( res.ok ) return res.json();
+      })
+        .then( res =>{
+          console.log( res )
+          const newFormData = { ...formData }
+          newFormData["subjectTaught"]["config"]["options"] = res.map( subject =>{
+            return { val: subject.id, text: subject.subjectName}
+          })
+          this.setState( newFormData )
+        })
+  }
+
   updateForm = (newState) => {
     this.setState({
       formData: newState,
@@ -159,37 +192,8 @@ class Person extends React.Component {
   componentWillMount() {
     console.log(this.props);
 
-    //Update route
-    // if (this.props.match) {
-      // const personID = this.props.match.params.personID;
-      // if (personID !== undefined) {
-      //   fetch(
-      //     process.env.REACT_APP_BASE_URL + "API/query/getOnePerson/" + personID
-      //   )
-      //     .then((res) => res.json())
-      //     .then((json) => {
-      //       let { formData } = this.state;
-      //       //console.log(json[0]);
-      //       // formData.academicQualification.value =
-      //       //   json[0].academicQualification;
-      //       formData.campus.value = json[0].collegeID;
-      //       formData.contact.value = json[0].contact;
-      //       // formData.courseCode.value = json[0].courseCode;
-      //       formData.email.value = json[0].email;
-      //       // formData.experienceinthisSubj.value = json[0].experienceinthisSubj;
-      //       // formData.jobType.value = json[0].jobType;
-      //       formData.name.value = json[0].fullName;
-      //       // formData.programme.value = json[0].programme;
-      //       // formData.subject.value = json[0].subject;
-      //       // formData.teachingExperience.value = json[0].teachingExperience;
-      //       // formData.year_part.value = json[0].year_part;
-      //       this.setState({
-      //         formData,
-      //       });
-      //     });
-      // }
-    // }
     this.loadCollegeOptions();
+    this.loadSubjectOptions();
   }
 
   submitForm = (event) => {

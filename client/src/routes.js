@@ -35,13 +35,12 @@ import Login from "./components/Elements/Login/login.js";
 import Session from "./components/Elements/Session/Session.js";
 
 import Teacher from "./pages/teacher"
-import Navbar from  './components/Header/Navbar.js'
 
 
 
 const loader = async ( {params} ) =>{
   const teacherID = params.teacherID
-  const result = await fetch( `${process.env.REACT_APP_BASE_URL}API/getAllPackages`).then( res => res.json())
+  const result = await fetch( `${process.env.REACT_APP_BASE_URL}API/query/getPackages`).then( res => res.json())
   return result  
 }
 const router = createBrowserRouter([

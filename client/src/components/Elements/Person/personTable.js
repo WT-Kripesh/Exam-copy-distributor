@@ -1,10 +1,9 @@
 import React from "react";
 import Table from "../../Widgets/Tables/tables.js";
-import { faEdit, faTrash, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import utils from "../../../utils/utils.js";
 import { Link } from "react-router-dom";
 import "./persons.css";
-import { useState, useEffect } from "react";
 class PersonTable extends React.Component {
   headings = [
     // name,contact,courseCode,programme,year_part,subject,campus,teachingExperience,experienceinthisSubj,academicQualification,jobType,email

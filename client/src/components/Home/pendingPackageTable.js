@@ -4,8 +4,6 @@ import { faReceipt } from "@fortawesome/free-solid-svg-icons";
 import utils from "../../utils/utils.js";
 let adbs = require("ad-bs-converter");
 
-//import { confirmAlert } from 'react-confirm-alert'; // Import
-//import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 class PendingPackageTable extends React.Component {
   sortingOnlyList = ["Status"];
@@ -16,13 +14,6 @@ class PendingPackageTable extends React.Component {
       colspan: "2",
       field: "packageCode",
     },
-    // {
-    //   label: "Year/Part",
-    //   text: "Year/Part",
-    //   colspan: "2",
-    //   field: "yearPart",
-    //   grouping: true,
-    // },
     {
       label: "Subject Name",
       colspan: "2",
@@ -142,6 +133,10 @@ class PendingPackageTable extends React.Component {
             "T"
           )[0];
         });
+
+        json.filter(( elem ) =>{
+          return true
+        } )
         console.log("Element after Overdue", json);
         let categories = {};
         categories = utils.createCategories(json, this.headings);
@@ -155,35 +150,62 @@ class PendingPackageTable extends React.Component {
       });
   };
 
-  componentWillReceiveProps(props) {
-    if (props.initialData) {
-      console.log(this.headings);
-      let json = props.initialData;
+  // componentWillReceiveProps(props) {
+  //   if (props.initialData) {
+  //     console.log(this.headings);
+  //     let json = props.initialData;
       
-      json.forEach((element) => {
-        console.log(element);
-        const myDate = this.parseDate(
-          element["dateOfDeadline"].split("T")[0].replaceAll("-", "/")
-        );
-        const diff = this.findDateDifference(myDate);
-        element["Overdue"] = { isOverdue: diff < 0, days: Math.abs(diff) };
-        element["status"] = diff < 0 ? "Overdue" : "Pending";
-      });
-      let categories = {};
-      categories = utils.createCategories(json, this.headings);
-      categories["package"] = ["Overdue"];
-      this.setState({
-        isLoaded: true,
-        tableData: json,
-        categories: categories,
-      });
-    }
-  }
+  //     json.forEach((element) => {
+  //       console.log(element);
+  //       const myDate = this.parseDate(
+  //         element["dateOfDeadline"].split("T")[0].replaceAll("-", "/")
+  //       );
+  //       const diff = this.findDateDifference(myDate);
+  //       element["Overdue"] = { isOverdue: diff < 0, days: Math.abs(diff) };
+  //       element["status"] = diff < 0 ? "Overdue" : "Pending";
+  //     });
+  //     let categories = {};
+  //     categories = utils.createCategories(json, this.headings);
+  //     categories["package"] = ["Overdue"];
+  //     this.setState({
+  //       isLoaded: true,
+  //       tableData: json,
+  //       categories: categories,
+  //     });
+  //   }
+  // }
 
   componentDidMount = () => {
+    console.log( this.props )
     if (!this.props.initialData) {
       this.getPendingPackageFromAPI();
     }
+    // else{
+    //   this.props.initialData.forEach((element) => {
+    //   console.log(element);
+    //   const myDate = this.parseDate(
+    //     element["dateOfDeadline"].split("T")[0].replaceAll("-", "/")
+    //   );
+    //   console.log(myDate);
+    //   const diff = this.findDateDifference(myDate);
+    //   element["Overdue"] = { isOverdue: diff < 0, days: Math.abs(diff) };
+    //   element["status"] = diff < 0 ? "Overdue" : "Pending";
+    //   element["dateOfDeadline"] = element["dateOfDeadline"].split("T")[0];
+    //   element["dateOfAssignment"] = element["dateOfAssignment"].split(
+    //     "T"
+    //   )[0];
+    // });
+    // console.log("Element after Overdue", this.props.initialData);
+    // let categories = {};
+    // categories = utils.createCategories(this.props.initialData, this.headings);
+    // categories["package"] = ["Overdue"];
+
+    // this.setState({
+    //   isLoaded: true,
+    //   tableData: this.props.initialData,
+    //   categories: categories,
+    // });
+    // }
   };
 
   statehandler = (states) => {

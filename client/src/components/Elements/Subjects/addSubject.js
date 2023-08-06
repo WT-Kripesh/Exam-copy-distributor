@@ -182,39 +182,41 @@ class AddNewSubject extends Component {
       .then((json) => {
         programData = json;
       });
-
+    this.setState({
+      programData: programData
+    })
     //Edit route
-    const subjectID = this.props.match?.params.subjectID;
-    if (subjectID !== undefined) {
-      fetch(
-        process.env.REACT_APP_BASE_URL + "API/query/getOneSubject/" + subjectID
-      )
-        .then((res) => res.json())
-        .then(async (json) => {
-          let { formData } = this.state;
-          console.log(json);
-          formData.level.value = json[0].academicDegree;
-          formData.programID.value = json[0].programID;
-          // formData.year.value = json[0].year;
-          formData.courseCode.value = json[0].courseCode;
-          // formData.part.value = json[0].part;
-          formData.subjectName.value = json[0].subjectName;
+    // const subjectID = this.props.match?.params.subjectID;
+    // if (subjectID !== undefined) {
+    //   fetch(
+    //     process.env.REACT_APP_BASE_URL + "API/query/getOneSubject/" + subjectID
+    //   )
+    //     .then((res) => res.json())
+    //     .then(async (json) => {
+    //       let { formData } = this.state;
+    //       console.log(json);
+    //       formData.level.value = json[0].academicDegree;
+    //       formData.programID.value = json[0].programID;
+    //       // formData.year.value = json[0].year;
+    //       formData.courseCode.value = json[0].courseCode;
+    //       // formData.part.value = json[0].part;
+    //       formData.subjectName.value = json[0].subjectName;
 
-          await this.setState(
-            {
-              formData: formData,
-              programData: programData,
-            },
-            async () => {
-              await this.loadProgramOptions();
-            }
-          );
-        });
-    } else {
-      this.setState({
-        programData: programData,
-      });
-    }
+    //       await this.setState(
+    //         {
+    //           formData: formData,
+    //           programData: programData,
+    //         },
+    //         async () => {
+    //           await this.loadProgramOptions();
+    //         }
+    //       );
+    //     });
+    // } else {
+    //   this.setState({
+    //     programData: programData,
+    //   });
+    // }
   };
 
   updateForm = (newState, id) => {
@@ -255,11 +257,11 @@ class AddNewSubject extends Component {
     let methodType = "POST";
 
     //URL for update route
-    const subjectID = this.props.match?.params.subjectID;
-    if (subjectID !== undefined) {
-      url = `${process.env.REACT_APP_BASE_URL}API/query/editSubject/${subjectID}`;
-      methodType = "PUT";
-    }
+    // const subjectID = this.props.match?.params.subjectID;
+    // if (subjectID !== undefined) {
+    //   url = `${process.env.REACT_APP_BASE_URL}API/query/editSubject/${subjectID}`;
+    //   methodType = "PUT";
+    // }
     fetch(url, {
       method: methodType,
       headers: {
@@ -272,10 +274,10 @@ class AddNewSubject extends Component {
         res.json().then((body) => {
           let { postedData } = this.state;
           if (res.status === 200) {
-            if (subjectID !== undefined || event.target.id === "save") {
-              this.props.history.goBack();
-              return;
-            }
+            // if (subjectID !== undefined || event.target.id === "save") {
+            //   this.props.history.goBack();
+            //   return;
+            // }
             console.log(body);
             let dataToDisplay = body;
             postedData.push(dataToDisplay);
