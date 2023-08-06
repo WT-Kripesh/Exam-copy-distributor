@@ -204,8 +204,26 @@ class ReceivePackage extends Component {
 
   //This method will automatically called by React once the Component finished mount
   componentDidMount = () => {
-    let { params } = this.props.match; //this.props.match.params gives the parameter sent along with link eg revivePackeg/ <<assignmentID>>
+    function getDigitsAfterLastSlash(url) {
+      // Find the last occurrence of "/"
+      const lastSlashIndex = url.lastIndexOf("/");
 
+      if (lastSlashIndex === -1) {
+        // No "/" found, return an error or null, depending on your use case.
+        return null;
+      }
+
+      // Extract the substring after the last "/"
+      const digitsAfterLastSlash = url.substring(lastSlashIndex + 1);
+
+      // Filter out non-digit characters using a regular expression
+      const digits = digitsAfterLastSlash.replace(/\D/g, '');
+
+      return digits;
+    }
+    let currentURL = window.location.href;
+    
+    let params = { assignmentID : getDigitsAfterLastSlash( currentURL) }
     fetch(
       `${process.env.REACT_APP_BASE_URL}API/query/getOneAssignment/${params.assignmentID}`
     )

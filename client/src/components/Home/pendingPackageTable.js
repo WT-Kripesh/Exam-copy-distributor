@@ -67,7 +67,7 @@ class PendingPackageTable extends React.Component {
     {
       text: "Receive",
       icon: faReceipt,
-      link: "admin/receivePackage/",
+      link: "/admin/receivePackage/",
     },
   ];
 
