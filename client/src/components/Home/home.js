@@ -4,8 +4,8 @@ import PendingPackageTable from "./pendingPackageTable.js";
 import "./buttons.css";
 import { faPlus, faEdit } from "@fortawesome/free-solid-svg-icons";
 import BreadCrumb from "../Widgets/Breadcrumb/breadcrumb.js";
-import { MDBCard, MDBCardBody, MDBCardHeader, MDBContainer } from "mdbreact";
-import Navbar from '../Header/Navbar.js'
+import { MDBCard, MDBCardBody, MDBCardHeader } from "mdbreact";
+
 const buttons = [
   {
     text: "Entry New Package",

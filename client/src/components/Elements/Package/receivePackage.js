@@ -248,8 +248,24 @@ class ReceivePackage extends Component {
         });
       });
   };
+  extractNumberFromURL(url) {
+    // Define a regular expression pattern to match the number
+    var regex = /\/(\d+)\b/;
+
+    // Use the `exec` method to search for the pattern in the URL
+    var match = regex.exec(url);
+
+    // If a match is found, return the captured number
+    if (match && match.length > 1) {
+      return parseInt(match[1]);
+    }
+
+    // If no match is found, return null
+    return null;
+  }
   handleReceive = () => {
-    let { params } = this.props.match;
+    let assignmentID = this.extractNumberFromURL(window.location);
+    let params = {assignmentID}
     let dataToSubmit = {};
     dataToSubmit["id"] = params.assignmentID;
     if (

@@ -131,41 +131,7 @@ class AddNewPackage extends Component {
           link: "/admin/add-new-program",
         },
       },
-      // year: {
-      //   element: "select",
-      //   value: "I",
-      //   label: true,
-      //   labelText: "Year",
-      //   config: {
-      //     name: "year",
-      //     options: [],
-      //   },
-      //   validation: {
-      //     required: false,
-      //   },
-      //   valid: true,
-      //   touched: false,
-      //   validationText: "",
-      // },
-      // part: {
-      //   element: "select",
-      //   value: "I",
-      //   label: true,
-      //   labelText: "Part",
-      //   config: {
-      //     name: "part",
-      //     options: [
-      //       { val: "I", text: "I" },
-      //       { val: "II", text: "II" },
-      //     ],
-      //   },
-      //   validation: {
-      //     required: false,
-      //   },
-      //   valid: true,
-      //   touched: false,
-      //   validationText: "",
-      // },
+
 
       subjectID: {
         element: "select",
@@ -301,7 +267,7 @@ class AddNewPackage extends Component {
       temp["text"] = `${subject.subjectName}  (${subject.courseCode})`;
       subjectOptions.push(temp);
     }
-    await this.setState({
+    this.setState({
       ...this.state,
       formData: {
         ...this.state.formData,
@@ -350,7 +316,23 @@ class AddNewPackage extends Component {
     });
   };
 
-  componentDidMount = async () => {
+  extractNumberFromURL =(url) => {
+  // Define a regular expression pattern to match the number
+  var regex = /\/(\d+)\b/;
+
+  // Use the `exec` method to search for the pattern in the URL
+  var match = regex.exec(url);
+
+  // If a match is found, return the captured number
+  if (match && match.length > 1) {
+    return parseInt(match[1]);
+  }
+
+  // If no match is found, return null
+  return null;
+}
+
+  componentWillMount = async () => {
     let { examID } = this.state.formData;
 
     let programData = [];
@@ -367,14 +349,17 @@ class AddNewPackage extends Component {
       .then((res) => res.json())
       .then((json) => {
         subjectData = json;
+        console.log("This is subject data", subjectData)
       });
     await fetch(process.env.REACT_APP_BASE_URL + "API/query/getExams")
       .then((res) => res.json())
       .then((json) => {
         examData = json;
       });
+    
+    
+    const packageID = this.extractNumberFromURL(window.location);
 
-    const packageID = this.props.match?.params.packageID;
     if (packageID !== undefined) {
       fetch(
         process.env.REACT_APP_BASE_URL + "API/query/getOnePackage/" + packageID

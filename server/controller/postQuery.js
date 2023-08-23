@@ -418,6 +418,12 @@ router.post("/addAssignment", (req, res) => {
   });
 });
 
+// router.post('//', ( req, res ) =>{
+//   const 
+//   const db = connectToDB();
+//   db.exec( )
+
+// })
 //obj[0]["result on date"]
 
 //   router.post("/addAssignment", (req, res) => {
