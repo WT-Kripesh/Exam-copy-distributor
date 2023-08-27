@@ -22,6 +22,7 @@ const Login = () => {
           }).then((res) => {
 
             if (res.ok) {
+                console.log(res)
                 if( loginCredential.username == 'admin'){
                     navigation("/admin");
 

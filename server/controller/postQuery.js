@@ -1,10 +1,6 @@
 const express = require("express");
 const { connectToDB } = require("../database");
 const { check, validationResult } = require("express-validator");
-const xlReader = require("xlsx");
-const xlParser = require("../xlParser");
-const http = require("http");
-const fetch = require("node-fetch");
 const router = express.Router();
 
 router.post(

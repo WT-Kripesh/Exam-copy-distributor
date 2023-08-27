@@ -1,6 +1,5 @@
 const express = require("express");
 const session = require("express-session");
-const config = require("config");
 const routes = require("./routes");
 const bodyParser = require("body-parser");
 const passport = require("passport");
@@ -13,18 +12,6 @@ const isAuthenticated = require("./middlewares/isAuthenticated");
 const app = express();
 app.use( cors() )
 
-//Middlewares
-
-//Allow CORS
-// app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   res.header("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS");
-//   next();
-// });
 
 app.use(
   session({
@@ -118,6 +105,9 @@ try {
     routes
   );
 
+  app.get('/test', ( req, res )=>{
+    res.send(JSON.stringify('Server is running'))
+  })
   app.get("/*", ( req, res )=>{
     res.sendStatus(404)
   });

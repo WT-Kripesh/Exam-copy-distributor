@@ -307,7 +307,7 @@ class ReceivePackage extends Component {
         });
       }
     });
-  };
+  }
 
   //Difference between Deadling and Submission Day to calculate Due Day
   setDifference = () => {

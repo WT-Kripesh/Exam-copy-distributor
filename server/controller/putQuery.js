@@ -1,7 +1,5 @@
 const express = require("express");
 const { connectToDB } = require("../database");
-const { check, validationResult, cookie } = require("express-validator");
-
 const router = express.Router();
 
 // pool.getConnection((err, connection) => {

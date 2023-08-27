@@ -27,7 +27,6 @@ export default function ButtonAppBar() {
   const logout = () =>{
     fetch( process.env.REACT_APP_BASE_URL + "API/logout").then( 
       ( res ) =>{
-        console.log( res )
         if( res.ok){
           navigate('/login');        
         }

@@ -1,6 +1,5 @@
 const express = require("express");
 const { connectToDB } = require("../database");
-const { check, validationResult } = require("express-validator");
 
 const router = express.Router();
 
