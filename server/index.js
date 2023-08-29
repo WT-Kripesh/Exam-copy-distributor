@@ -60,22 +60,26 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'build')))
 
 
 
 try {
+  
+  // commenting for debugging locally
+  // uncomment the following lines for deplopyment
 
-  app.get('/', ( req, res ) =>{
-    res.sendFile( path.join(__dirname, 'build', 'index.html'))
-  })
 
-  app.get('/teacher/*', ( req, res ) =>{
-    res.sendFile( path.join(__dirname, 'build', 'index.html'))
-  })
-  app.get('/admin/*', ( req, res ) =>{
-    res.sendFile( path.join(__dirname, 'build', 'index.html'))
-  })
+  // app.use(express.static(path.join(__dirname, 'build')))
+  // app.get('/', ( req, res ) =>{
+  //   res.sendFile( path.join(__dirname, 'build', 'index.html'))
+  // })
+
+  // app.get('/teacher/*', ( req, res ) =>{
+  //   res.sendFile( path.join(__dirname, 'build', 'index.html'))
+  // })
+  // app.get('/admin/*', ( req, res ) =>{
+  //   res.sendFile( path.join(__dirname, 'build', 'index.html'))
+  // })
 
   app.get("/user", function (req, res) {
     if (req.isAuthenticated()) {
