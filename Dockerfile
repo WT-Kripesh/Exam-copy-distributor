@@ -1,5 +1,5 @@
 # ---- Base Node ----
-FROM node:14 AS base
+FROM node:18 AS base
 WORKDIR /app
 
 # ---- Build Client ----
@@ -32,14 +32,15 @@ COPY server/ ./
 
 ENV PORT=4000
 
+EXPOSE 4000
 
 # ---- Release ----
-FROM node:14 AS release
+FROM node:18 AS release
 
 WORKDIR /app
 
-COPY --from=client /app/client/build /app/client
+COPY --from=client /app/client/build /app/build
 
-COPY --from=server /app/server /app/server
+COPY --from=server /app/server /app/
 
-CMD ["node", "server/index.js"]
+CMD ["node", "index.js"]

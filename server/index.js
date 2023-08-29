@@ -4,6 +4,7 @@ const routes = require("./routes");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const cors = require('cors')
+const path = require('path')
 const LocalStrategy = require("passport-local").Strategy;
 
 const { getByUsernamePassword, getById } = require("./controller/User");
@@ -59,9 +60,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'build')))
+
+
 
 try {
+
+  app.get('/', ( req, res ) =>{
+    res.sendFile( path.join(__dirname, 'build', 'index.html'))
+  })
+
+  app.get('/teacher/*', ( req, res ) =>{
+    res.sendFile( path.join(__dirname, 'build', 'index.html'))
+  })
+  app.get('/admin/*', ( req, res ) =>{
+    res.sendFile( path.join(__dirname, 'build', 'index.html'))
+  })
+
   app.get("/user", function (req, res) {
     if (req.isAuthenticated()) {
       res.send(JSON.stringify(req.user));
@@ -95,7 +110,6 @@ try {
       if ( err ) { return next( err )}
       res.sendStatus(200)
     });
-    // res.sendStatus(200);
   });
 
   app.use(
