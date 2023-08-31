@@ -18,11 +18,20 @@ This contains the source code for the **Exam Copy Package Management System** . 
 
 - ### Install Dependencies
 
-  Form any shell in root folder:
+  All commands to be executed from the root directory
+  
+  #### Frontend
 
   ```sh
+  cd frontend
+  npm install --force
+  ```
+
+  #### Backend
+
+  ```sh
+  cd server
   npm install
-  cd frontend && npm install
   ```
 
 - ### Database Configuration
