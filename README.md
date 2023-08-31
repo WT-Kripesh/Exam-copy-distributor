@@ -4,7 +4,8 @@ This contains the source code for the **Exam Copy Package Management System** . 
 
 ## Technologies Used
 
-- [NodeJS](https://nodejs.org/en/) for the backend system.
+- [NodeJS](https://nodejs.org/en/) as the runtime environment.
+- [ExpressJS](https://expressjs.com/) for the backend server.
 - [SQLite](https://www.sqlitetutorial.net/sqlite-nodejs/) for the database server.
 - [ReactJS](https://reactjs.org/) and CSS for the webpage.
 
@@ -40,16 +41,18 @@ This contains the source code for the **Exam Copy Package Management System** . 
     - Default username: `admin`
     - Default password: `admin`
 
-- ### Applicaiton Building
-
-  - Open a prefered shell inside `build_scripts` folder.
-  - Run `build_frontend.bat` in `cmd` or `build_frontend.ps1` in `powershell` or `build_frontend.sh` in `bash` and likewise.
 
 ## Usage
 
 From any shell in root folder:
 
 ```sh
+cd server
+npm start
+```
+Again for client
+```sh
+cd client
 npm start
 ```
 
